@@ -23,9 +23,20 @@
 <body>
 
 
-  <!-- =================================
+  <!-- ==============================
+       DECORATIVE ORBIT
+  =============================== -->
+
+  <div class="orbital-decoration">
+    <div class="orbit orbit-one"></div>
+    <div class="orbit orbit-two"></div>
+    <div class="orbit-dot"></div>
+  </div>
+
+
+  <!-- ==============================
        NAVBAR
-  ================================== -->
+  =============================== -->
 
   <header class="navbar">
 
@@ -59,25 +70,13 @@
 
     <div class="nav-right">
 
-      <button
-        class="search-icon"
-        type="button"
-        onclick="document.getElementById('beat-search').focus()"
-      >
-        ⌕
-      </button>
-
+      <span class="nav-status">
+        BEAT STORE
+      </span>
 
       <div class="nav-cart">
-
-        <span class="bag-icon">
-          ♧
-        </span>
-
-        <strong>
-          $0.00
-        </strong>
-
+        <span>◌</span>
+        <strong>$0.00</strong>
       </div>
 
     </div>
@@ -86,25 +85,102 @@
 
 
 
-  <!-- =================================
+  <!-- ==============================
+       HERO
+  =============================== -->
+
+  <section class="hero">
+
+    <div class="hero-small">
+      JUANJIS / BEAT STORE
+    </div>
+
+
+    <div class="hero-main">
+
+      <div>
+
+        <h1>
+          Beats from<br>
+          another place.
+        </h1>
+
+        <p>
+          Dark sounds. Melodic textures.<br>
+          Built for your next track.
+        </p>
+
+      </div>
+
+
+      <div class="hero-orbit">
+
+        <div class="hero-circle"></div>
+
+        <div class="hero-ring ring-one"></div>
+
+        <div class="hero-ring ring-two"></div>
+
+        <span class="hero-star star-one">✦</span>
+        <span class="hero-star star-two">·</span>
+        <span class="hero-star star-three">+</span>
+
+      </div>
+
+    </div>
+
+
+    <a
+      href="#beats"
+      class="scroll-link"
+    >
+      EXPLORE TRACKS
+      <span>↓</span>
+    </a>
+
+  </section>
+
+
+
+  <!-- ==============================
        TRACKS
-  ================================== -->
+  =============================== -->
 
   <main id="beats">
 
 
-    <section class="tracks-section">
+    <section class="catalog">
 
 
-      <h1>
-        Tracks
-      </h1>
+      <!-- CATALOG HEADER -->
+
+      <div class="catalog-top">
+
+        <div>
+
+          <p class="section-label">
+            CATALOG / 2026
+          </p>
+
+          <h2>
+            Selected tracks
+          </h2>
+
+        </div>
+
+
+        <p class="catalog-description">
+          Preview the sound.<br>
+          Choose your license.
+        </p>
+
+      </div>
 
 
 
-      <!-- FILTERS -->
+      <!-- FILTER BAR -->
 
-      <div class="filters">
+      <div class="filter-bar">
 
 
         <select id="genre-filter">
@@ -153,136 +229,50 @@
         </select>
 
 
-        <select>
-
-          <option>
-            All Moods
-          </option>
-
-          <option>
-            Dark
-          </option>
-
-          <option>
-            Melodic
-          </option>
-
-          <option>
-            Aggressive
-          </option>
-
-          <option>
-            Atmospheric
-          </option>
-
-        </select>
-
-
-        <select>
-
-          <option>
-            Default
-          </option>
-
-          <option>
-            Newest
-          </option>
-
-          <option>
-            Oldest
-          </option>
-
-        </select>
-
-
-        <select>
-
-          <option>
-            Default List
-          </option>
-
-          <option>
-            A — Z
-          </option>
-
-          <option>
-            Z — A
-          </option>
-
-        </select>
-
+        <div class="catalog-count">
+          02 TRACKS
+        </div>
 
       </div>
 
 
 
-      <!-- SEARCH -->
+      <!-- ==============================
+           TRACK LIST
+      =============================== -->
 
-      <div class="search-box">
+      <div class="track-list">
 
-        <span class="search-symbol">
-          ⌕
-        </span>
 
-        <input
-          type="text"
-          id="beat-search"
-          placeholder="What type of track are you looking for?"
+        <!-- ==========================
+             VOID
+        =========================== -->
+
+        <article
+          class="track-row"
+          data-genre="Dark Trap / Rage"
+          data-bpm="128"
+          data-title="VOID"
         >
 
-      </div>
 
-
-
-      <!-- TABLE HEADER -->
-
-      <div class="track-header">
-
-        <span>
-          TITLE
-        </span>
-
-        <span>
-          TIME
-        </span>
-
-        <span>
-          BPM
-        </span>
-
-        <span>
-          TAGS
-        </span>
-
-        <span>
-          ACTIONS
-        </span>
-
-      </div>
-
-
-
-      <!-- =================================
-           VOID
-      ================================== -->
-
-      <div
-        class="track-row"
-        data-genre="Dark Trap / Rage"
-        data-bpm="128"
-        data-title="VOID"
-      >
-
-
-        <div class="track-title">
-
-
-          <div class="track-cover void-cover">
-            V
+          <div class="track-index">
+            01
           </div>
 
 
-          <div class="title-text">
+          <div class="track-art void-art">
+
+            <span class="art-letter">
+              V
+            </span>
+
+            <span class="art-orbit"></span>
+
+          </div>
+
+
+          <div class="track-info">
 
             <h3>
               VOID
@@ -294,94 +284,105 @@
 
           </div>
 
-        </div>
 
+          <div class="track-meta">
 
+            <span class="meta-label">
+              BPM
+            </span>
 
-        <div class="track-time">
-          03:45
-        </div>
+            <strong>
+              128
+            </strong>
 
-
-
-        <div class="track-bpm">
-          128
-        </div>
-
-
-
-        <div class="track-tags">
-
-          <span>
-            dark trap
-          </span>
-
-          <span>
-            rage
-          </span>
-
-        </div>
-
-
-
-        <div class="track-actions">
-
-
-          <button
-            class="play-button action-button"
-            data-audio="beats/VOID%20(Without%20Producer%20Tag).mp3"
-            type="button"
-          >
-            ▶
-          </button>
-
-
-          <a
-            class="download-button action-button"
-            href="beats/VOID%20(Without%20Producer%20Tag).mp3"
-            download
-          >
-            ↓
-          </a>
-
-
-          <button
-            type="button"
-            class="buy-button"
-            data-beat="VOID"
-            data-genre="Dark Trap / Rage"
-            data-bpm="128"
-          >
-            BUY
-          </button>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- =================================
-           CTRL
-      ================================== -->
-
-      <div
-        class="track-row"
-        data-genre="HyperPop / Rage"
-        data-bpm="167"
-        data-title="CTRL"
-      >
-
-
-        <div class="track-title">
-
-
-          <div class="track-cover ctrl-cover">
-            C
           </div>
 
 
-          <div class="title-text">
+          <div class="track-meta duration">
+
+            <span class="meta-label">
+              TIME
+            </span>
+
+            <strong>
+              03:45
+            </strong>
+
+          </div>
+
+
+          <div class="track-tags">
+
+            <span>
+              DARK
+            </span>
+
+            <span>
+              RAGE
+            </span>
+
+          </div>
+
+
+          <div class="track-actions">
+
+
+            <button
+              class="play-button preview-button"
+              data-audio="beats/VOID%20(Without%20Producer%20Tag).mp3"
+              type="button"
+            >
+              <span>▶</span>
+              PREVIEW
+            </button>
+
+
+            <button
+              type="button"
+              class="buy-button"
+              data-beat="VOID"
+              data-genre="Dark Trap / Rage"
+              data-bpm="128"
+            >
+              BUY
+            </button>
+
+
+          </div>
+
+        </article>
+
+
+
+        <!-- ==========================
+             CTRL
+        =========================== -->
+
+        <article
+          class="track-row"
+          data-genre="HyperPop / Rage"
+          data-bpm="167"
+          data-title="CTRL"
+        >
+
+
+          <div class="track-index">
+            02
+          </div>
+
+
+          <div class="track-art ctrl-art">
+
+            <span class="art-letter">
+              C
+            </span>
+
+            <span class="art-orbit"></span>
+
+          </div>
+
+
+          <div class="track-info">
 
             <h3>
               CTRL
@@ -393,142 +394,179 @@
 
           </div>
 
-        </div>
+
+          <div class="track-meta">
+
+            <span class="meta-label">
+              BPM
+            </span>
+
+            <strong>
+              167
+            </strong>
+
+          </div>
 
 
+          <div class="track-meta duration">
 
-        <div class="track-time">
-          02:53
-        </div>
+            <span class="meta-label">
+              TIME
+            </span>
 
+            <strong>
+              02:53
+            </strong>
 
-
-        <div class="track-bpm">
-          167
-        </div>
-
-
-
-        <div class="track-tags">
-
-          <span>
-            hyperpop
-          </span>
-
-          <span>
-            rage
-          </span>
-
-        </div>
+          </div>
 
 
+          <div class="track-tags">
 
-        <div class="track-actions">
+            <span>
+              HYPERPOP
+            </span>
 
+            <span>
+              RAGE
+            </span>
 
-          <button
-            class="play-button action-button"
-            data-audio="beats/CTRL.mp3"
-            type="button"
-          >
-            ▶
-          </button>
-
-
-          <a
-            class="download-button action-button"
-            href="beats/CTRL.mp3"
-            download
-          >
-            ↓
-          </a>
+          </div>
 
 
-          <button
-            type="button"
-            class="buy-button"
-            data-beat="CTRL"
-            data-genre="HyperPop / Rage"
-            data-bpm="167"
-          >
-            BUY
-          </button>
+          <div class="track-actions">
 
-        </div>
+
+            <button
+              class="play-button preview-button"
+              data-audio="beats/CTRL.mp3"
+              type="button"
+            >
+              <span>▶</span>
+              PREVIEW
+            </button>
+
+
+            <button
+              type="button"
+              class="buy-button"
+              data-beat="CTRL"
+              data-genre="HyperPop / Rage"
+              data-bpm="167"
+            >
+              BUY
+            </button>
+
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+
+      <!-- CATALOG FOOTER -->
+
+      <div class="catalog-footer">
+
+        <span>
+          PREVIEWS ONLY
+        </span>
+
+        <span>
+          FULL FILES DELIVERED AFTER PURCHASE
+        </span>
 
       </div>
 
 
     </section>
 
-
   </main>
 
 
 
-  <!-- =================================
+  <!-- ==============================
        ABOUT
-  ================================== -->
+  =============================== -->
 
   <section
     id="about"
     class="about-section"
   >
 
-    <div class="section-label">
-      ABOUT
+    <div class="about-number">
+      02
     </div>
 
 
-    <h2>
-      Sounds from<br>
-      another place.
-    </h2>
+    <div class="about-content">
+
+      <p class="section-label">
+        ABOUT JUANJIS
+      </p>
+
+      <h2>
+        Sounds from<br>
+        another place.
+      </h2>
+
+      <p class="about-text">
+        Juanjis is a producer focused on dark,
+        melodic and energetic sounds.
+        Each beat is built to leave space
+        for your own voice and ideas.
+      </p>
+
+    </div>
 
 
-    <p>
-      Juanjis is a young producer focused on
-      creating dark, melodic and energetic sounds.
-    </p>
+    <div class="about-symbol">
+      ✦
+    </div>
 
   </section>
 
 
 
-  <!-- =================================
+  <!-- ==============================
        CONTACT
-  ================================== -->
+  =============================== -->
 
   <section
     id="contact"
     class="contact-section"
   >
 
-    <div class="section-label">
-      CONTACT
-    </div>
+    <p class="section-label">
+      CONTACT / COLLABORATION
+    </p>
 
 
     <h2>
-      Let's work.
+      Let's make<br>
+      something.
     </h2>
 
 
     <a
+      class="contact-link"
       href="https://mail.google.com/mail/?view=cm&fs=1&to=juanjispanjis67@gmail.com"
       target="_blank"
       rel="noopener"
     >
-      Contact me →
+      CONTACT JUANJIS
+      <span>↗</span>
     </a>
 
   </section>
 
 
 
-  <!-- =================================
+  <!-- ==============================
        PLAYER
-  ================================== -->
+  =============================== -->
 
   <div class="player">
 
@@ -549,28 +587,34 @@
 
     <div class="player-controls">
 
-
-      <button id="backward">
+      <button
+        id="backward"
+        type="button"
+      >
         −5
       </button>
 
 
-      <button id="main-play">
+      <button
+        id="main-play"
+        type="button"
+      >
         ▶
       </button>
 
 
-      <button id="forward">
+      <button
+        id="forward"
+        type="button"
+      >
         +5
       </button>
-
 
     </div>
 
 
 
     <div class="progress-container">
-
 
       <span id="current-time">
         0:00
@@ -597,7 +641,7 @@
     <div class="volume-container">
 
       <span>
-        🔊
+        VOL
       </span>
 
 
@@ -612,14 +656,13 @@
 
     </div>
 
-
   </div>
 
 
 
-  <!-- =================================
+  <!-- ==============================
        LICENSE MODAL
-  ================================== -->
+  =============================== -->
 
   <div
     id="license-modal"
@@ -640,7 +683,7 @@
 
 
       <p class="modal-label">
-        JUANJIS BEAT STORE
+        JUANJIS / LICENSING
       </p>
 
 
@@ -687,7 +730,7 @@
             type="button"
             class="select-license"
           >
-            Select
+            SELECT
           </button>
 
         </div>
@@ -720,7 +763,7 @@
             type="button"
             class="select-license"
           >
-            Select
+            SELECT
           </button>
 
         </div>
@@ -753,7 +796,7 @@
             type="button"
             class="select-license"
           >
-            Select
+            SELECT
           </button>
 
         </div>
@@ -786,7 +829,7 @@
             type="button"
             class="select-license"
           >
-            Select
+            SELECT
           </button>
 
         </div>
@@ -800,15 +843,19 @@
 
 
 
-  <!-- =================================
+  <!-- ==============================
        FOOTER
-  ================================== -->
+  =============================== -->
 
   <footer>
 
-    <p>
-      © 2026 JUANJIS
-    </p>
+    <div>
+      JUANJIS
+    </div>
+
+    <span>
+      © 2026
+    </span>
 
   </footer>
 
