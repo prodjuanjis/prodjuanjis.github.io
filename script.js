@@ -289,9 +289,12 @@ document.addEventListener("keydown", (event) => {
 });
 
 
-// LICENSE SELECTION
+// LICENSE SELECTION → WHATSAPP
+
 const licenseButtons =
   document.querySelectorAll(".select-license");
+
+const whatsappNumber = "573233971540";
 
 licenseButtons.forEach(button => {
 
@@ -301,13 +304,20 @@ licenseButtons.forEach(button => {
       button.closest(".license-card");
 
     const name =
-      license.querySelector("h3").textContent;
+      license.querySelector("h3").textContent.trim();
 
     const price =
-      license.querySelector("strong").textContent;
+      license.querySelector("strong").textContent.trim();
 
-    alert(
-      `Selected: ${name} — ${price}\n\nNext step: Checkout`
+    const message =
+      `Hola, quiero comprar el beat VOID.%0A%0A` +
+      `Licencia: ${encodeURIComponent(name)}%0A` +
+      `Precio: ${encodeURIComponent(price)}%0A%0A` +
+      `¿Cómo puedo realizar el pago?`;
+
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${message}`,
+      "_blank"
     );
 
   });
