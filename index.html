@@ -11,141 +11,222 @@
 
 <body>
 
-  <header>
-    <div>
-      <h1>Juanjis</h1>
-      <p>Producer & Beatmaker</p>
+  <!-- NAVBAR -->
+  <header class="navbar">
+
+    <div class="logo">
+      JUANJIS
     </div>
+
+    <nav>
+      <a href="#beats">Beats</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="cart">
+      🛍 <span>$0.00</span>
+    </div>
+
   </header>
 
 
-  <main>
+  <!-- HERO -->
+  <section class="hero">
 
-    <section class="beats-section">
+    <p class="eyebrow">JUANJIS BEAT STORE</p>
 
-      <h2>Mis Beats</h2>
+    <h1>Beats for<br>your next track.</h1>
 
+    <p class="hero-text">
+      Dark sounds. Melodic textures.<br>
+      Made by Juanjis.
+    </p>
 
-      <!-- BEAT -->
-      <div class="beat-card">
-
-        <div class="beat-info">
-          <h3>VOID</h3>
-          <p>Dark Trap / Rage · 128 BPM</p>
-        </div>
-
-
-        <!-- REPRODUCTOR -->
-        <div class="player">
-
-          <div class="player-buttons">
-
-            <button class="control-btn" data-action="back">
-              −5
-            </button>
-
-            <button
-              class="play-btn"
-              data-audio="beats/VOID%20(Without%20Producer%20Tag).mp3"
-            >
-              ▶
-            </button>
-
-            <button class="control-btn" data-action="forward">
-              +5
-            </button>
-
-          </div>
+  </section>
 
 
-          <!-- BARRA DE TIEMPO -->
-          <div class="timeline">
+  <!-- BEATS -->
+  <main id="beats">
 
-            <span class="current-time">
-              0:00
-            </span>
+    <div class="section-title">
 
-            <input
-              type="range"
-              class="progress"
-              value="0"
-              min="0"
-              max="100"
-              step="0.1"
-            >
+      <div>
+        <p class="eyebrow">CATALOG</p>
+        <h2>Tracks</h2>
+      </div>
 
-            <span class="duration">
-              0:00
-            </span>
+      <div class="filters">
 
-          </div>
+        <select>
+          <option>All Genres</option>
+          <option>Dark Trap</option>
+          <option>Rage</option>
+          <option>Trap</option>
+        </select>
 
-
-          <!-- VOLUMEN -->
-          <div class="volume">
-
-            <span>🔊</span>
-
-            <input
-              type="range"
-              class="volume-slider"
-              min="0"
-              max="1"
-              step="0.01"
-              value="1"
-            >
-
-          </div>
-
-        </div>
-
-
-        <!-- BOTONES -->
-        <div class="beat-actions">
-
-          <a
-            class="download-btn"
-            href="beats/VOID%20(Without%20Producer%20Tag).mp3"
-            download
-          >
-            ↓ Descargar
-          </a>
-
-
-          <a
-            class="buy-btn"
-            href="#comprar"
-          >
-            Comprar
-          </a>
-
-        </div>
+        <select>
+          <option>All BPM</option>
+          <option>120–130</option>
+          <option>130–140</option>
+          <option>140+</option>
+        </select>
 
       </div>
 
-    </section>
+    </div>
 
 
-    <!-- COMPRA -->
-    <section id="comprar" class="buy-section">
+    <!-- BEAT -->
+    <div class="beat-row">
 
-      <h2>Comprar un Beat</h2>
+      <div class="beat-number">
+        01
+      </div>
 
-      <p>
-        ¿Quieres comprar una licencia?
-        Escríbeme para conocer los precios y condiciones.
-      </p>
+      <div class="beat-info">
+
+        <h3>VOID</h3>
+
+        <p>
+          Dark Trap / Rage
+        </p>
+
+      </div>
+
+      <div class="beat-bpm">
+        128 BPM
+      </div>
+
+      <div class="beat-time">
+        03:45
+      </div>
+
+      <button
+        class="play-button"
+        data-audio="beats/VOID%20(Without%20Producer%20Tag).mp3"
+      >
+        ▶
+      </button>
 
       <a
-        class="contact-btn"
-        href="juanjispanjis67@gmail.com"
+        class="download-button"
+        href="beats/VOID%20(Without%20Producer%20Tag).mp3"
+        download
       >
-        Contactarme
+        ↓
       </a>
 
-    </section>
+      <button class="buy-button">
+        BUY
+      </button>
+
+    </div>
+
 
   </main>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+
+    <p class="eyebrow">ABOUT</p>
+
+    <h2>
+      Sounds from<br>
+      another place.
+    </h2>
+
+    <p>
+      Juanjis is a producer focused on dark,
+      atmospheric and modern sounds.
+    </p>
+
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+
+    <p class="eyebrow">CONTACT</p>
+
+    <h2>Let's work.</h2>
+
+    <a href="mailto:TUEMAIL@EJEMPLO.COM">
+      Contact me →
+    </a>
+
+  </section>
+
+
+  <!-- PLAYER -->
+  <div class="player">
+
+    <div class="player-info">
+
+      <span>NOW PLAYING</span>
+
+      <strong id="player-title">
+        Nothing playing
+      </strong>
+
+    </div>
+
+
+    <div class="player-controls">
+
+      <button id="backward">
+        −5
+      </button>
+
+      <button id="main-play">
+        ▶
+      </button>
+
+      <button id="forward">
+        +5
+      </button>
+
+    </div>
+
+
+    <div class="progress-container">
+
+      <span id="current-time">
+        0:00
+      </span>
+
+      <input
+        type="range"
+        id="progress"
+        min="0"
+        max="100"
+        value="0"
+      >
+
+      <span id="duration">
+        0:00
+      </span>
+
+    </div>
+
+
+    <div class="volume-container">
+
+      <span>🔊</span>
+
+      <input
+        type="range"
+        id="volume"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.8"
+      >
+
+    </div>
+
+  </div>
 
 
   <footer>
