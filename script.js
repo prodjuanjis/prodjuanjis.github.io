@@ -221,3 +221,95 @@ audio.addEventListener("ended", () => {
   currentTime.textContent = "0:00";
 
 });
+/* =========================
+   LICENSE MODAL
+========================= */
+
+const licenseModal = document.getElementById("license-modal");
+const closeLicense = document.getElementById("close-license");
+
+
+// FIND BUY BUTTONS
+const buyButtons = document.querySelectorAll("button, a");
+
+buyButtons.forEach(button => {
+
+  if (button.textContent.trim().toUpperCase() === "BUY") {
+
+    button.addEventListener("click", (event) => {
+
+      event.preventDefault();
+
+      licenseModal.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+
+    });
+
+  }
+
+});
+
+
+// CLOSE BUTTON
+closeLicense.addEventListener("click", () => {
+
+  licenseModal.classList.remove("active");
+
+  document.body.style.overflow = "";
+
+});
+
+
+// CLICK OUTSIDE
+licenseModal.addEventListener("click", (event) => {
+
+  if (event.target === licenseModal) {
+
+    licenseModal.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+  }
+
+});
+
+
+// ESC KEY
+document.addEventListener("keydown", (event) => {
+
+  if (event.key === "Escape") {
+
+    licenseModal.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+  }
+
+});
+
+
+// LICENSE SELECTION
+const licenseButtons =
+  document.querySelectorAll(".select-license");
+
+licenseButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const license =
+      button.closest(".license-card");
+
+    const name =
+      license.querySelector("h3").textContent;
+
+    const price =
+      license.querySelector("strong").textContent;
+
+    alert(
+      `Selected: ${name} — ${price}\n\nNext step: Checkout`
+    );
+
+  });
+
+});
