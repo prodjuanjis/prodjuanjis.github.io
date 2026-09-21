@@ -17,11 +17,13 @@ const backward = document.getElementById("backward");
 const forward = document.getElementById("forward");
 
 
-// VOLUMEN INICIAL
+// =========================
+// AUDIO
+// =========================
+
 audio.volume = 0.8;
 
 
-// CONVERTIR SEGUNDOS A 0:00
 function formatTime(seconds) {
 
   if (!isFinite(seconds)) {
@@ -38,14 +40,16 @@ function formatTime(seconds) {
 }
 
 
+// =========================
 // PLAY DE CADA BEAT
+// =========================
+
 playButtons.forEach(button => {
 
   button.addEventListener("click", () => {
 
     const audioFile = button.dataset.audio;
 
-    // Si es el mismo beat
     if (currentButton === button) {
 
       if (audio.paused) {
@@ -58,7 +62,6 @@ playButtons.forEach(button => {
     }
 
 
-    // Nuevo beat
     audio.src = audioFile;
 
     audio.load();
@@ -85,7 +88,10 @@ playButtons.forEach(button => {
 });
 
 
-// BOTÓN PRINCIPAL PLAY / PAUSA
+// =========================
+// PLAY / PAUSA PRINCIPAL
+// =========================
+
 mainPlay.addEventListener("click", () => {
 
   if (!audio.src) {
@@ -93,19 +99,14 @@ mainPlay.addEventListener("click", () => {
   }
 
   if (audio.paused) {
-
     audio.play();
-
   } else {
-
     audio.pause();
-
   }
 
 });
 
 
-// ACTUALIZAR BOTONES CUANDO PLAY / PAUSA
 audio.addEventListener("play", () => {
 
   mainPlay.textContent = "❚❚";
@@ -128,7 +129,10 @@ audio.addEventListener("pause", () => {
 });
 
 
-// CUANDO CARGA EL AUDIO
+// =========================
+// DURACIÓN
+// =========================
+
 audio.addEventListener("loadedmetadata", () => {
 
   duration.textContent =
@@ -139,7 +143,6 @@ audio.addEventListener("loadedmetadata", () => {
 });
 
 
-// ACTUALIZAR BARRA
 audio.addEventListener("timeupdate", () => {
 
   if (!audio.duration) {
@@ -157,7 +160,10 @@ audio.addEventListener("timeupdate", () => {
 });
 
 
-// ADELANTAR / ATRASAR
+// =========================
+// BARRA DE PROGRESO
+// =========================
+
 progress.addEventListener("input", () => {
 
   if (!audio.duration) {
@@ -170,7 +176,10 @@ progress.addEventListener("input", () => {
 });
 
 
-// −5 SEGUNDOS
+// =========================
+// -5 SEGUNDOS
+// =========================
+
 backward.addEventListener("click", () => {
 
   if (!audio.src) {
@@ -183,7 +192,10 @@ backward.addEventListener("click", () => {
 });
 
 
+// =========================
 // +5 SEGUNDOS
+// =========================
+
 forward.addEventListener("click", () => {
 
   if (!audio.src) {
@@ -199,7 +211,10 @@ forward.addEventListener("click", () => {
 });
 
 
+// =========================
 // VOLUMEN
+// =========================
+
 volume.addEventListener("input", () => {
 
   audio.volume = volume.value;
@@ -207,7 +222,10 @@ volume.addEventListener("input", () => {
 });
 
 
-// CUANDO TERMINA EL BEAT
+// =========================
+// CUANDO TERMINA
+// =========================
+
 audio.addEventListener("ended", () => {
 
   mainPlay.textContent = "▶";
@@ -221,37 +239,71 @@ audio.addEventListener("ended", () => {
   currentTime.textContent = "0:00";
 
 });
-/* =========================
-   LICENSE MODAL
-========================= */
-
-const licenseModal = document.getElementById("license-modal");
-const closeLicense = document.getElementById("close-license");
 
 
-// FIND BUY BUTTONS
-const buyButtons = document.querySelectorAll("button, a");
+// ==================================================
+// LICENCIAS
+// ==================================================
+
+const licenseModal =
+  document.getElementById("license-modal");
+
+const closeLicense =
+  document.getElementById("close-license");
+
+const modalBeat =
+  document.getElementById("modal-beat");
+
+
+// BEAT SELECCIONADO
+
+let selectedBeat = "VOID";
+let selectedGenre = "Dark Trap / Rage";
+let selectedBpm = "128";
+
+
+// =========================
+// BOTONES BUY
+// =========================
+
+const buyButtons =
+  document.querySelectorAll(".buy-button");
+
 
 buyButtons.forEach(button => {
 
-  if (button.textContent.trim().toUpperCase() === "BUY") {
+  button.addEventListener("click", () => {
 
-    button.addEventListener("click", (event) => {
+    // Obtener información del beat
+    selectedBeat =
+      button.dataset.beat;
 
-      event.preventDefault();
+    selectedGenre =
+      button.dataset.genre;
 
-      licenseModal.classList.add("active");
+    selectedBpm =
+      button.dataset.bpm;
 
-      document.body.style.overflow = "hidden";
 
-    });
+    // Cambiar información dentro del modal
+    modalBeat.textContent =
+      `${selectedBeat} · ${selectedGenre} · ${selectedBpm} BPM`;
 
-  }
+
+    // Abrir modal
+    licenseModal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+  });
 
 });
 
 
-// CLOSE BUTTON
+// =========================
+// CERRAR MODAL
+// =========================
+
 closeLicense.addEventListener("click", () => {
 
   licenseModal.classList.remove("active");
@@ -261,7 +313,8 @@ closeLicense.addEventListener("click", () => {
 });
 
 
-// CLICK OUTSIDE
+// CLIC FUERA DEL MODAL
+
 licenseModal.addEventListener("click", (event) => {
 
   if (event.target === licenseModal) {
@@ -275,7 +328,8 @@ licenseModal.addEventListener("click", (event) => {
 });
 
 
-// ESC KEY
+// ESC
+
 document.addEventListener("keydown", (event) => {
 
   if (event.key === "Escape") {
@@ -289,12 +343,16 @@ document.addEventListener("keydown", (event) => {
 });
 
 
-// LICENSE SELECTION → WHATSAPP
+// ==================================================
+// WHATSAPP
+// ==================================================
 
 const licenseButtons =
   document.querySelectorAll(".select-license");
 
-const whatsappNumber = "573233971540";
+const whatsappNumber =
+  "573233971540";
+
 
 licenseButtons.forEach(button => {
 
@@ -303,17 +361,29 @@ licenseButtons.forEach(button => {
     const license =
       button.closest(".license-card");
 
+
     const name =
-      license.querySelector("h3").textContent.trim();
+      license
+        .querySelector("h3")
+        .textContent
+        .trim();
+
 
     const price =
-      license.querySelector("strong").textContent.trim();
+      license
+        .querySelector("strong")
+        .textContent
+        .trim();
+
 
     const message =
-      `Hola, quiero comprar el beat VOID.%0A%0A` +
+      `Hola, quiero comprar el beat ${selectedBeat}.%0A%0A` +
       `Licencia: ${encodeURIComponent(name)}%0A` +
-      `Precio: ${encodeURIComponent(price)}%0A%0A` +
+      `Precio: ${encodeURIComponent(price)}%0A` +
+      `Género: ${encodeURIComponent(selectedGenre)}%0A` +
+      `BPM: ${encodeURIComponent(selectedBpm)}%0A%0A` +
       `¿Cómo puedo realizar el pago?`;
+
 
     window.open(
       `https://wa.me/${whatsappNumber}?text=${message}`,
