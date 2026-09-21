@@ -3,39 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Juanjis — Beats</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <header>
-    <h1>Juanjis</h1>
-    <p>Producer & Beatmaker</p>
+    <div>
+      <h1>Juanjis</h1>
+      <p>Producer & Beatmaker</p>
+    </div>
   </header>
 
+
   <main>
-    <section>
+
+    <section class="beats-section">
+
       <h2>Mis Beats</h2>
 
-      <div class="beat">
-        <div>
+
+      <!-- BEAT -->
+      <div class="beat-card">
+
+        <div class="beat-info">
           <h3>VOID</h3>
-          <p>Without Producer Tag</p>
+          <p>Dark Trap / Rage · 128 BPM</p>
         </div>
 
-        <button
-          data-audio="beats/VOID%20(Without%20Producer%20Tag).mp3">
-          ▶ Play
-        </button>
+
+        <!-- REPRODUCTOR -->
+        <div class="player">
+
+          <div class="player-buttons">
+
+            <button class="control-btn" data-action="back">
+              −5
+            </button>
+
+            <button
+              class="play-btn"
+              data-audio="beats/VOID%20(Without%20Producer%20Tag).mp3"
+            >
+              ▶
+            </button>
+
+            <button class="control-btn" data-action="forward">
+              +5
+            </button>
+
+          </div>
+
+
+          <!-- BARRA DE TIEMPO -->
+          <div class="timeline">
+
+            <span class="current-time">
+              0:00
+            </span>
+
+            <input
+              type="range"
+              class="progress"
+              value="0"
+              min="0"
+              max="100"
+              step="0.1"
+            >
+
+            <span class="duration">
+              0:00
+            </span>
+
+          </div>
+
+
+          <!-- VOLUMEN -->
+          <div class="volume">
+
+            <span>🔊</span>
+
+            <input
+              type="range"
+              class="volume-slider"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- BOTONES -->
+        <div class="beat-actions">
+
+          <a
+            class="download-btn"
+            href="beats/VOID%20(Without%20Producer%20Tag).mp3"
+            download
+          >
+            ↓ Descargar
+          </a>
+
+
+          <a
+            class="buy-btn"
+            href="#comprar"
+          >
+            Comprar
+          </a>
+
+        </div>
+
       </div>
 
     </section>
+
+
+    <!-- COMPRA -->
+    <section id="comprar" class="buy-section">
+
+      <h2>Comprar un Beat</h2>
+
+      <p>
+        ¿Quieres comprar una licencia?
+        Escríbeme para conocer los precios y condiciones.
+      </p>
+
+      <a
+        class="contact-btn"
+        href="mailto:TUEMAIL@EJEMPLO.COM"
+      >
+        Contactarme
+      </a>
+
+    </section>
+
   </main>
 
+
   <footer>
+
     <p>© 2026 Juanjis</p>
+
   </footer>
+
 
   <script src="script.js"></script>
 
