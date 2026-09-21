@@ -1,9 +1,27 @@
-let currentAudio = null;
+const audio = new Audio();
+
 let currentButton = null;
 
+const playButtons = document.querySelectorAll(".play-button");
+const mainPlay = document.getElementById("main-play");
 
-/* CONVERTIR SEGUNDOS A MINUTOS */
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
 
+const currentTime = document.getElementById("current-time");
+const duration = document.getElementById("duration");
+
+const playerTitle = document.getElementById("player-title");
+
+const backward = document.getElementById("backward");
+const forward = document.getElementById("forward");
+
+
+// VOLUMEN INICIAL
+audio.volume = 0.8;
+
+
+// CONVERTIR SEGUNDOS A 0:00
 function formatTime(seconds) {
 
   if (!isFinite(seconds)) {
@@ -20,165 +38,186 @@ function formatTime(seconds) {
 }
 
 
-/* TODOS LOS BOTONES PLAY */
-
-document.querySelectorAll(".play-btn").forEach(button => {
-
-  const audioFile = button.dataset.audio;
-
-  const audio = new Audio(audioFile);
-
-
-  /* PLAY / PAUSE */
+// PLAY DE CADA BEAT
+playButtons.forEach(button => {
 
   button.addEventListener("click", () => {
 
-    /* Si es otro beat */
-    if (currentAudio && currentAudio !== audio) {
+    const audioFile = button.dataset.audio;
 
-      currentAudio.pause();
+    // Si es el mismo beat
+    if (currentButton === button) {
 
-      if (currentButton) {
-        currentButton.textContent = "▶";
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
       }
-
-    }
-
-
-    /* PAUSAR */
-
-    if (!audio.paused) {
-
-      audio.pause();
-
-      button.textContent = "▶";
 
       return;
     }
 
 
-    /* REPRODUCIR */
+    // Nuevo beat
+    audio.src = audioFile;
+
+    audio.load();
 
     audio.play();
 
-    button.textContent = "❚❚";
-
-    currentAudio = audio;
     currentButton = button;
 
-  });
+    playerTitle.textContent =
+      button.closest(".beat-row")
+        .querySelector("h3")
+        .textContent;
 
-
-  /* CUANDO TERMINA */
-
-  audio.addEventListener("ended", () => {
-
-    button.textContent = "▶";
-
-    const card = button.closest(".beat-card");
-
-    if (card) {
-
-      const progress = card.querySelector(".progress");
-
-      progress.value = 0;
-
-    }
-
-  });
-
-
-  /* DURACIÓN */
-
-  audio.addEventListener("loadedmetadata", () => {
-
-    const card = button.closest(".beat-card");
-
-    if (!card) return;
-
-    const duration = card.querySelector(".duration");
-
-    duration.textContent = formatTime(audio.duration);
-
-  });
-
-
-  /* PROGRESO */
-
-  audio.addEventListener("timeupdate", () => {
-
-    const card = button.closest(".beat-card");
-
-    if (!card) return;
-
-    const progress = card.querySelector(".progress");
-
-    const currentTime = card.querySelector(".current-time");
-
-
-    if (audio.duration) {
-
-      progress.value =
-        (audio.currentTime / audio.duration) * 100;
-
-    }
-
-    currentTime.textContent =
-      formatTime(audio.currentTime);
-
-  });
-
-
-  /* MOVERSE POR LA BARRA */
-
-  const card = button.closest(".beat-card");
-
-  const progress = card.querySelector(".progress");
-
-  progress.addEventListener("input", () => {
-
-    if (!audio.duration) return;
-
-    audio.currentTime =
-      (progress.value / 100) * audio.duration;
-
-  });
-
-
-  /* ATRÁS 5 SEGUNDOS */
-
-  card.querySelector('[data-action="back"]')
-    .addEventListener("click", () => {
-
-      audio.currentTime =
-        Math.max(0, audio.currentTime - 5);
-
+    playButtons.forEach(btn => {
+      btn.textContent = "▶";
     });
 
+    button.textContent = "❚❚";
 
-  /* ADELANTE 5 SEGUNDOS */
-
-  card.querySelector('[data-action="forward"]')
-    .addEventListener("click", () => {
-
-      audio.currentTime =
-        Math.min(
-          audio.duration || Infinity,
-          audio.currentTime + 5
-        );
-
-    });
-
-
-  /* VOLUMEN */
-
-  const volume =
-    card.querySelector(".volume-slider");
-
-  volume.addEventListener("input", () => {
-
-    audio.volume = volume.value;
+    mainPlay.textContent = "❚❚";
 
   });
+
+});
+
+
+// BOTÓN PRINCIPAL PLAY / PAUSA
+mainPlay.addEventListener("click", () => {
+
+  if (!audio.src) {
+    return;
+  }
+
+  if (audio.paused) {
+
+    audio.play();
+
+  } else {
+
+    audio.pause();
+
+  }
+
+});
+
+
+// ACTUALIZAR BOTONES CUANDO PLAY / PAUSA
+audio.addEventListener("play", () => {
+
+  mainPlay.textContent = "❚❚";
+
+  if (currentButton) {
+    currentButton.textContent = "❚❚";
+  }
+
+});
+
+
+audio.addEventListener("pause", () => {
+
+  mainPlay.textContent = "▶";
+
+  if (currentButton) {
+    currentButton.textContent = "▶";
+  }
+
+});
+
+
+// CUANDO CARGA EL AUDIO
+audio.addEventListener("loadedmetadata", () => {
+
+  duration.textContent =
+    formatTime(audio.duration);
+
+  progress.value = 0;
+
+});
+
+
+// ACTUALIZAR BARRA
+audio.addEventListener("timeupdate", () => {
+
+  if (!audio.duration) {
+    return;
+  }
+
+  const percentage =
+    (audio.currentTime / audio.duration) * 100;
+
+  progress.value = percentage;
+
+  currentTime.textContent =
+    formatTime(audio.currentTime);
+
+});
+
+
+// ADELANTAR / ATRASAR
+progress.addEventListener("input", () => {
+
+  if (!audio.duration) {
+    return;
+  }
+
+  audio.currentTime =
+    (progress.value / 100) * audio.duration;
+
+});
+
+
+// −5 SEGUNDOS
+backward.addEventListener("click", () => {
+
+  if (!audio.src) {
+    return;
+  }
+
+  audio.currentTime =
+    Math.max(0, audio.currentTime - 5);
+
+});
+
+
+// +5 SEGUNDOS
+forward.addEventListener("click", () => {
+
+  if (!audio.src) {
+    return;
+  }
+
+  audio.currentTime =
+    Math.min(
+      audio.duration,
+      audio.currentTime + 5
+    );
+
+});
+
+
+// VOLUMEN
+volume.addEventListener("input", () => {
+
+  audio.volume = volume.value;
+
+});
+
+
+// CUANDO TERMINA EL BEAT
+audio.addEventListener("ended", () => {
+
+  mainPlay.textContent = "▶";
+
+  if (currentButton) {
+    currentButton.textContent = "▶";
+  }
+
+  progress.value = 0;
+
+  currentTime.textContent = "0:00";
 
 });
