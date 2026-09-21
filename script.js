@@ -2,27 +2,49 @@ const audio = new Audio();
 
 let currentButton = null;
 
-const playButtons = document.querySelectorAll(".play-button");
-const mainPlay = document.getElementById("main-play");
 
-const progress = document.getElementById("progress");
-const volume = document.getElementById("volume");
+// =========================
+// ELEMENTOS DEL PLAYER
+// =========================
 
-const currentTime = document.getElementById("current-time");
-const duration = document.getElementById("duration");
+const playButtons =
+  document.querySelectorAll(".play-button");
 
-const playerTitle = document.getElementById("player-title");
+const mainPlay =
+  document.getElementById("main-play");
 
-const backward = document.getElementById("backward");
-const forward = document.getElementById("forward");
+const progress =
+  document.getElementById("progress");
+
+const volume =
+  document.getElementById("volume");
+
+const currentTime =
+  document.getElementById("current-time");
+
+const duration =
+  document.getElementById("duration");
+
+const playerTitle =
+  document.getElementById("player-title");
+
+const backward =
+  document.getElementById("backward");
+
+const forward =
+  document.getElementById("forward");
 
 
 // =========================
-// AUDIO
+// VOLUMEN
 // =========================
 
 audio.volume = 0.8;
 
+
+// =========================
+// TIEMPO
+// =========================
 
 function formatTime(seconds) {
 
@@ -30,37 +52,49 @@ function formatTime(seconds) {
     return "0:00";
   }
 
-  const minutes = Math.floor(seconds / 60);
+  const minutes =
+    Math.floor(seconds / 60);
 
-  const secs = Math.floor(seconds % 60)
-    .toString()
-    .padStart(2, "0");
+  const secs =
+    Math.floor(seconds % 60)
+      .toString()
+      .padStart(2, "0");
 
   return `${minutes}:${secs}`;
 }
 
 
 // =========================
-// PLAY DE CADA BEAT
+// PLAY DE LOS BEATS
 // =========================
 
 playButtons.forEach(button => {
 
   button.addEventListener("click", () => {
 
-    const audioFile = button.dataset.audio;
+    const audioFile =
+      button.dataset.audio;
+
+
+    // MISMO BEAT
 
     if (currentButton === button) {
 
       if (audio.paused) {
+
         audio.play();
+
       } else {
+
         audio.pause();
+
       }
 
       return;
     }
 
+
+    // NUEVO BEAT
 
     audio.src = audioFile;
 
@@ -68,16 +102,27 @@ playButtons.forEach(button => {
 
     audio.play();
 
+
     currentButton = button;
 
+
+    const row =
+      button.closest(".beat-row");
+
+    const title =
+      row.querySelector("h3").textContent;
+
+
     playerTitle.textContent =
-      button.closest(".beat-row")
-        .querySelector("h3")
-        .textContent;
+      title;
+
 
     playButtons.forEach(btn => {
+
       btn.textContent = "▶";
+
     });
+
 
     button.textContent = "❚❚";
 
@@ -89,7 +134,7 @@ playButtons.forEach(button => {
 
 
 // =========================
-// PLAY / PAUSA PRINCIPAL
+// PLAY PRINCIPAL
 // =========================
 
 mainPlay.addEventListener("click", () => {
@@ -98,167 +143,243 @@ mainPlay.addEventListener("click", () => {
     return;
   }
 
+
   if (audio.paused) {
+
     audio.play();
+
   } else {
+
     audio.pause();
+
   }
 
 });
 
+
+// =========================
+// AUDIO PLAY
+// =========================
 
 audio.addEventListener("play", () => {
 
   mainPlay.textContent = "❚❚";
 
+
   if (currentButton) {
+
     currentButton.textContent = "❚❚";
+
   }
 
 });
 
+
+// =========================
+// AUDIO PAUSE
+// =========================
 
 audio.addEventListener("pause", () => {
 
   mainPlay.textContent = "▶";
 
+
   if (currentButton) {
+
     currentButton.textContent = "▶";
+
   }
 
 });
 
 
 // =========================
-// DURACIÓN
+// METADATA
 // =========================
 
-audio.addEventListener("loadedmetadata", () => {
+audio.addEventListener(
+  "loadedmetadata",
+  () => {
 
-  duration.textContent =
-    formatTime(audio.duration);
+    duration.textContent =
+      formatTime(audio.duration);
 
-  progress.value = 0;
+    progress.value = 0;
 
-});
-
-
-audio.addEventListener("timeupdate", () => {
-
-  if (!audio.duration) {
-    return;
   }
-
-  const percentage =
-    (audio.currentTime / audio.duration) * 100;
-
-  progress.value = percentage;
-
-  currentTime.textContent =
-    formatTime(audio.currentTime);
-
-});
+);
 
 
 // =========================
-// BARRA DE PROGRESO
+// PROGRESO
 // =========================
 
-progress.addEventListener("input", () => {
+audio.addEventListener(
+  "timeupdate",
+  () => {
 
-  if (!audio.duration) {
-    return;
+    if (!audio.duration) {
+      return;
+    }
+
+
+    const percentage =
+      (audio.currentTime /
+       audio.duration) * 100;
+
+
+    progress.value =
+      percentage;
+
+
+    currentTime.textContent =
+      formatTime(audio.currentTime);
+
   }
+);
 
-  audio.currentTime =
-    (progress.value / 100) * audio.duration;
 
-});
+// =========================
+// MOVER PROGRESO
+// =========================
+
+progress.addEventListener(
+  "input",
+  () => {
+
+    if (!audio.duration) {
+      return;
+    }
+
+
+    audio.currentTime =
+      (progress.value / 100) *
+      audio.duration;
+
+  }
+);
 
 
 // =========================
 // -5 SEGUNDOS
 // =========================
 
-backward.addEventListener("click", () => {
+backward.addEventListener(
+  "click",
+  () => {
 
-  if (!audio.src) {
-    return;
+    if (!audio.src) {
+      return;
+    }
+
+
+    audio.currentTime =
+      Math.max(
+        0,
+        audio.currentTime - 5
+      );
+
   }
-
-  audio.currentTime =
-    Math.max(0, audio.currentTime - 5);
-
-});
+);
 
 
 // =========================
 // +5 SEGUNDOS
 // =========================
 
-forward.addEventListener("click", () => {
+forward.addEventListener(
+  "click",
+  () => {
 
-  if (!audio.src) {
-    return;
+    if (!audio.src) {
+      return;
+    }
+
+
+    audio.currentTime =
+      Math.min(
+        audio.duration,
+        audio.currentTime + 5
+      );
+
   }
-
-  audio.currentTime =
-    Math.min(
-      audio.duration,
-      audio.currentTime + 5
-    );
-
-});
+);
 
 
 // =========================
 // VOLUMEN
 // =========================
 
-volume.addEventListener("input", () => {
+volume.addEventListener(
+  "input",
+  () => {
 
-  audio.volume = volume.value;
+    audio.volume =
+      volume.value;
 
-});
-
-
-// =========================
-// CUANDO TERMINA
-// =========================
-
-audio.addEventListener("ended", () => {
-
-  mainPlay.textContent = "▶";
-
-  if (currentButton) {
-    currentButton.textContent = "▶";
   }
+);
 
-  progress.value = 0;
 
-  currentTime.textContent = "0:00";
+// =========================
+// TERMINÓ EL BEAT
+// =========================
 
-});
+audio.addEventListener(
+  "ended",
+  () => {
+
+    mainPlay.textContent =
+      "▶";
+
+
+    if (currentButton) {
+
+      currentButton.textContent =
+        "▶";
+
+    }
+
+
+    progress.value = 0;
+
+    currentTime.textContent =
+      "0:00";
+
+  }
+);
 
 
 // ==================================================
 // LICENCIAS
 // ==================================================
 
+
+// MODAL
+
 const licenseModal =
-  document.getElementById("license-modal");
+  document.getElementById(
+    "license-modal"
+  );
 
 const closeLicense =
-  document.getElementById("close-license");
+  document.getElementById(
+    "close-license"
+  );
 
 const modalBeat =
-  document.getElementById("modal-beat");
+  document.getElementById(
+    "modal-beat"
+  );
 
 
 // BEAT SELECCIONADO
 
 let selectedBeat = "VOID";
-let selectedGenre = "Dark Trap / Rage";
+
+let selectedGenre =
+  "Dark Trap / Rage";
+
 let selectedBpm = "128";
 
 
@@ -267,35 +388,50 @@ let selectedBpm = "128";
 // =========================
 
 const buyButtons =
-  document.querySelectorAll(".buy-button");
+  document.querySelectorAll(
+    ".buy-button"
+  );
 
 
 buyButtons.forEach(button => {
 
-  button.addEventListener("click", () => {
-
-    // Obtener información del beat
-    selectedBeat =
-      button.dataset.beat;
-
-    selectedGenre =
-      button.dataset.genre;
-
-    selectedBpm =
-      button.dataset.bpm;
+  button.addEventListener(
+    "click",
+    () => {
 
 
-    // Cambiar información dentro del modal
-    modalBeat.textContent =
-      `${selectedBeat} · ${selectedGenre} · ${selectedBpm} BPM`;
+      // GUARDAR DATOS
+
+      selectedBeat =
+        button.dataset.beat;
+
+      selectedGenre =
+        button.dataset.genre;
+
+      selectedBpm =
+        button.dataset.bpm;
 
 
-    // Abrir modal
-    licenseModal.classList.add("active");
+      // CAMBIAR TEXTO DEL MODAL
 
-    document.body.style.overflow = "hidden";
+      modalBeat.textContent =
+        `${selectedBeat} · ` +
+        `${selectedGenre} · ` +
+        `${selectedBpm} BPM`;
 
-  });
+
+      // ABRIR MODAL
+
+      licenseModal.classList.add(
+        "active"
+      );
+
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+  );
 
 });
 
@@ -304,43 +440,68 @@ buyButtons.forEach(button => {
 // CERRAR MODAL
 // =========================
 
-closeLicense.addEventListener("click", () => {
+closeLicense.addEventListener(
+  "click",
+  () => {
 
-  licenseModal.classList.remove("active");
+    licenseModal.classList.remove(
+      "active"
+    );
 
-  document.body.style.overflow = "";
-
-});
-
-
-// CLIC FUERA DEL MODAL
-
-licenseModal.addEventListener("click", (event) => {
-
-  if (event.target === licenseModal) {
-
-    licenseModal.classList.remove("active");
-
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+      "";
 
   }
+);
 
-});
+
+// =========================
+// CLIC FUERA
+// =========================
+
+licenseModal.addEventListener(
+  "click",
+  (event) => {
+
+    if (
+      event.target ===
+      licenseModal
+    ) {
+
+      licenseModal.classList.remove(
+        "active"
+      );
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+  }
+);
 
 
+// =========================
 // ESC
+// =========================
 
-document.addEventListener("keydown", (event) => {
+document.addEventListener(
+  "keydown",
+  (event) => {
 
-  if (event.key === "Escape") {
+    if (event.key === "Escape") {
 
-    licenseModal.classList.remove("active");
+      licenseModal.classList.remove(
+        "active"
+      );
 
-    document.body.style.overflow = "";
+      document.body.style.overflow =
+        "";
+
+    }
 
   }
-
-});
+);
 
 
 // ==================================================
@@ -348,7 +509,10 @@ document.addEventListener("keydown", (event) => {
 // ==================================================
 
 const licenseButtons =
-  document.querySelectorAll(".select-license");
+  document.querySelectorAll(
+    ".select-license"
+  );
+
 
 const whatsappNumber =
   "573233971540";
@@ -356,40 +520,56 @@ const whatsappNumber =
 
 licenseButtons.forEach(button => {
 
-  button.addEventListener("click", () => {
-
-    const license =
-      button.closest(".license-card");
-
-
-    const name =
-      license
-        .querySelector("h3")
-        .textContent
-        .trim();
+  button.addEventListener(
+    "click",
+    () => {
 
 
-    const price =
-      license
-        .querySelector("strong")
-        .textContent
-        .trim();
+      const license =
+        button.closest(
+          ".license-card"
+        );
 
 
-    const message =
-      `Hola, quiero comprar el beat ${selectedBeat}.%0A%0A` +
-      `Licencia: ${encodeURIComponent(name)}%0A` +
-      `Precio: ${encodeURIComponent(price)}%0A` +
-      `Género: ${encodeURIComponent(selectedGenre)}%0A` +
-      `BPM: ${encodeURIComponent(selectedBpm)}%0A%0A` +
-      `¿Cómo puedo realizar el pago?`;
+      const name =
+        license
+          .querySelector("h3")
+          .textContent
+          .trim();
 
 
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${message}`,
-      "_blank"
-    );
+      const price =
+        license
+          .querySelector("strong")
+          .textContent
+          .trim();
 
-  });
+
+      const message =
+        `Hola, quiero comprar ` +
+        `el beat ${selectedBeat}.%0A%0A` +
+
+        `Licencia: ` +
+        `${encodeURIComponent(name)}%0A` +
+
+        `Precio: ` +
+        `${encodeURIComponent(price)}%0A` +
+
+        `Género: ` +
+        `${encodeURIComponent(selectedGenre)}%0A` +
+
+        `BPM: ` +
+        `${encodeURIComponent(selectedBpm)}%0A%0A` +
+
+        `¿Cómo puedo realizar el pago?`;
+
+
+      window.open(
+        `https://wa.me/${whatsappNumber}?text=${message}`,
+        "_blank"
+      );
+
+    }
+  );
 
 });
