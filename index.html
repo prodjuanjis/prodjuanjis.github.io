@@ -12,22 +12,14 @@
 
   <title>JUANJIS — Beat Store</title>
 
-
-  <!-- ==============================
-       FAVICON / LOGO
-  =============================== -->
-
+  <!-- FAVICON -->
   <link
     rel="icon"
     type="image/jpeg"
     href="Juanjis_150x150.jpg"
   >
 
-
-  <!-- ==============================
-       STYLESHEET
-  =============================== -->
-
+  <!-- CSS -->
   <link
     rel="stylesheet"
     href="style.css"
@@ -39,9 +31,9 @@
 <body>
 
 
-  <!-- ==============================
-       DECORATIVE ORBIT
-  =============================== -->
+  <!-- =================================
+       DECORATIVE BACKGROUND
+  ================================== -->
 
   <div class="orbital-decoration">
 
@@ -55,9 +47,9 @@
 
 
 
-  <!-- ==============================
+  <!-- =================================
        NAVBAR
-  =============================== -->
+  ================================== -->
 
   <header class="navbar">
 
@@ -109,13 +101,14 @@
 
     </div>
 
+
   </header>
 
 
 
-  <!-- ==============================
+  <!-- =================================
        HERO
-  =============================== -->
+  ================================== -->
 
   <section class="hero">
 
@@ -167,6 +160,7 @@
 
       </div>
 
+
     </div>
 
 
@@ -183,13 +177,14 @@
 
     </a>
 
+
   </section>
 
 
 
-  <!-- ==============================
-       TRACKS
-  =============================== -->
+  <!-- =================================
+       BEATS
+  ================================== -->
 
   <main id="beats">
 
@@ -221,82 +216,114 @@
           Choose your license.
         </p>
 
+
       </div>
 
 
 
-      <!-- ==============================
-           FILTER BAR
-      =============================== -->
+      <!-- =================================
+           FILTERS + SEARCH
+      ================================== -->
 
       <div class="filter-bar">
 
 
+        <!-- GENRE -->
+
         <select id="genre-filter">
 
-          <option>
+          <option value="all">
             All Genres
           </option>
 
-          <option>
+          <option value="dark trap">
             Dark Trap
           </option>
 
-          <option>
+          <option value="rage">
             Rage
           </option>
 
-          <option>
+          <option value="hyperpop">
             HyperPop
           </option>
 
-          <option>
+          <option value="trap">
             Trap
           </option>
 
         </select>
 
 
+
+        <!-- BPM -->
+
         <select id="bpm-filter">
 
-          <option>
+          <option value="all">
             All BPM
           </option>
 
-          <option>
+          <option value="120-130">
             120–130
           </option>
 
-          <option>
+          <option value="130-140">
             130–140
           </option>
 
-          <option>
+          <option value="140+">
             140+
           </option>
 
         </select>
 
 
-        <div class="catalog-count">
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+          <span>
+            ⌕
+          </span>
+
+
+          <input
+            type="text"
+            id="track-search"
+            placeholder="Search tracks..."
+            autocomplete="off"
+          >
+
+        </div>
+
+
+
+        <!-- COUNT -->
+
+        <div
+          class="catalog-count"
+          id="catalog-count"
+        >
           02 TRACKS
         </div>
+
 
       </div>
 
 
 
-      <!-- ==============================
+      <!-- =================================
            TRACK LIST
-      =============================== -->
+      ================================== -->
 
       <div class="track-list">
 
 
-
-        <!-- ==========================
+        <!-- =================================
              VOID
-        =========================== -->
+        ================================== -->
 
         <article
           class="track-row"
@@ -380,9 +407,9 @@
             <!-- PREVIEW -->
 
             <button
+              type="button"
               class="play-button preview-button"
               data-audio="beats/VOID%20(Without%20Producer%20Tag).mp3"
-              type="button"
             >
 
               <span>
@@ -409,13 +436,14 @@
 
           </div>
 
+
         </article>
 
 
 
-        <!-- ==========================
+        <!-- =================================
              CTRL
-        =========================== -->
+        ================================== -->
 
         <article
           class="track-row"
@@ -499,9 +527,9 @@
             <!-- PREVIEW -->
 
             <button
+              type="button"
               class="play-button preview-button"
               data-audio="beats/CTRL.mp3"
-              type="button"
             >
 
               <span>
@@ -528,6 +556,7 @@
 
           </div>
 
+
         </article>
 
 
@@ -535,9 +564,7 @@
 
 
 
-      <!-- ==============================
-           CATALOG FOOTER
-      =============================== -->
+      <!-- CATALOG FOOTER -->
 
       <div class="catalog-footer">
 
@@ -555,13 +582,14 @@
 
     </section>
 
+
   </main>
 
 
 
-  <!-- ==============================
+  <!-- =================================
        ABOUT
-  =============================== -->
+  ================================== -->
 
   <section
     id="about"
@@ -589,10 +617,12 @@
 
 
       <p class="about-text">
+
         Juanjis is a producer focused on dark,
         melodic and energetic sounds.
         Each beat is built to leave space
         for your own voice and ideas.
+
       </p>
 
 
@@ -608,9 +638,9 @@
 
 
 
-  <!-- ==============================
+  <!-- =================================
        CONTACT
-  =============================== -->
+  ================================== -->
 
   <section
     id="contact"
@@ -649,9 +679,9 @@
 
 
 
-  <!-- ==============================
+  <!-- =================================
        PLAYER
-  =============================== -->
+  ================================== -->
 
   <div class="player">
 
@@ -668,7 +698,6 @@
       </strong>
 
     </div>
-
 
 
     <div class="player-controls">
@@ -701,7 +730,6 @@
     </div>
 
 
-
     <div class="progress-container">
 
 
@@ -727,9 +755,7 @@
     </div>
 
 
-
     <div class="volume-container">
-
 
       <span>
         VOL
@@ -745,7 +771,6 @@
         value="0.8"
       >
 
-
     </div>
 
 
@@ -753,9 +778,9 @@
 
 
 
-  <!-- ==============================
+  <!-- =================================
        LICENSE MODAL
-  =============================== -->
+  ================================== -->
 
   <div
     id="license-modal"
@@ -785,11 +810,6 @@
       </h2>
 
 
-      <!--
-        ESTE TEXTO CAMBIA AUTOMÁTICAMENTE
-        DEPENDIENDO DEL BEAT QUE ELIJAS.
-      -->
-
       <p
         class="modal-beat"
         id="modal-beat"
@@ -802,19 +822,15 @@
       <div class="license-options">
 
 
-        <!-- ==========================
-             MP3 LEASE
-        =========================== -->
+        <!-- MP3 -->
 
         <div class="license-card">
-
 
           <div>
 
             <h3>
               MP3 Lease
             </h3>
-
 
             <p>
               MP3 file · Commercial use
@@ -835,24 +851,19 @@
             SELECT
           </button>
 
-
         </div>
 
 
 
-        <!-- ==========================
-             WAV LEASE
-        =========================== -->
+        <!-- WAV -->
 
         <div class="license-card">
-
 
           <div>
 
             <h3>
               WAV Lease
             </h3>
-
 
             <p>
               WAV file · Commercial use
@@ -873,24 +884,19 @@
             SELECT
           </button>
 
-
         </div>
 
 
 
-        <!-- ==========================
-             UNLIMITED
-        =========================== -->
+        <!-- UNLIMITED -->
 
         <div class="license-card">
-
 
           <div>
 
             <h3>
               Unlimited
             </h3>
-
 
             <p>
               WAV + MP3 · Unlimited use
@@ -911,24 +917,19 @@
             SELECT
           </button>
 
-
         </div>
 
 
 
-        <!-- ==========================
-             EXCLUSIVE
-        =========================== -->
+        <!-- EXCLUSIVE -->
 
         <div class="license-card">
-
 
           <div>
 
             <h3>
               Exclusive
             </h3>
-
 
             <p>
               Exclusive rights · WAV + MP3
@@ -949,7 +950,6 @@
             SELECT
           </button>
 
-
         </div>
 
 
@@ -963,12 +963,11 @@
 
 
 
-  <!-- ==============================
+  <!-- =================================
        FOOTER
-  =============================== -->
+  ================================== -->
 
   <footer>
-
 
     <div>
       JUANJIS
@@ -979,14 +978,13 @@
       © 2026
     </span>
 
-
   </footer>
 
 
 
-  <!-- ==============================
+  <!-- =================================
        JAVASCRIPT
-  =============================== -->
+  ================================== -->
 
   <script src="script.js"></script>
 
