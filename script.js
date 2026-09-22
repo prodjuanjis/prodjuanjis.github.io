@@ -1,11 +1,19 @@
+/* =========================================
+   JUANJIS — BEAT STORE
+   MAIN JAVASCRIPT
+   ========================================= */
+
+
+/* =========================================
+   AUDIO PLAYER
+   ========================================= */
+
 const audio = new Audio();
 
 let currentButton = null;
 
 
-// =========================
-// ELEMENTOS DEL PLAYER
-// =========================
+/* ELEMENTOS */
 
 const playButtons =
   document.querySelectorAll(".play-button");
@@ -35,50 +43,57 @@ const forward =
   document.getElementById("forward");
 
 
-// =========================
-// VOLUMEN
-// =========================
+/* VOLUMEN */
 
 audio.volume = 0.8;
 
 
-// =========================
-// TIEMPO
-// =========================
+/* =========================================
+   TIME FORMAT
+   ========================================= */
 
 function formatTime(seconds) {
 
   if (!isFinite(seconds)) {
+
     return "0:00";
+
   }
+
 
   const minutes =
     Math.floor(seconds / 60);
+
 
   const secs =
     Math.floor(seconds % 60)
       .toString()
       .padStart(2, "0");
 
+
   return `${minutes}:${secs}`;
+
 }
 
 
-// =========================
-// PLAY DE LOS BEATS
-// =========================
+/* =========================================
+   PLAY BUTTONS
+   ========================================= */
 
 playButtons.forEach(button => {
 
+
   button.addEventListener("click", () => {
+
 
     const audioFile =
       button.dataset.audio;
 
 
-    // MISMO BEAT
+    /* MISMO BEAT */
 
     if (currentButton === button) {
+
 
       if (audio.paused) {
 
@@ -90,27 +105,28 @@ playButtons.forEach(button => {
 
       }
 
+
       return;
+
     }
 
 
-    // NUEVO BEAT
+    /* NUEVO BEAT */
 
     audio.src = audioFile;
 
     audio.load();
-
-    audio.play();
 
 
     currentButton = button;
 
 
     const row =
-      button.closest(".beat-row");
+      button.closest(".track-row");
+
 
     const title =
-      row.querySelector("h3").textContent;
+      row.querySelector("h3").textContent.trim();
 
 
     playerTitle.textContent =
@@ -119,28 +135,45 @@ playButtons.forEach(button => {
 
     playButtons.forEach(btn => {
 
-      btn.textContent = "▶";
+      btn.classList.remove("playing");
+
+      btn.querySelector("span").textContent =
+        "▶";
 
     });
 
 
-    button.textContent = "❚❚";
+    button.classList.add("playing");
 
-    mainPlay.textContent = "❚❚";
+
+    button.querySelector("span").textContent =
+      "❚❚";
+
+
+    mainPlay.textContent =
+      "❚❚";
+
+
+    audio.play().catch(() => {});
+
 
   });
+
 
 });
 
 
-// =========================
-// PLAY PRINCIPAL
-// =========================
+/* =========================================
+   MAIN PLAY / PAUSE
+   ========================================= */
 
 mainPlay.addEventListener("click", () => {
 
+
   if (!audio.src) {
+
     return;
+
   }
 
 
@@ -154,359 +187,538 @@ mainPlay.addEventListener("click", () => {
 
   }
 
+
 });
 
 
-// =========================
-// AUDIO PLAY
-// =========================
+/* =========================================
+   PLAY EVENT
+   ========================================= */
 
 audio.addEventListener("play", () => {
 
-  mainPlay.textContent = "❚❚";
+
+  mainPlay.textContent =
+    "❚❚";
 
 
   if (currentButton) {
 
-    currentButton.textContent = "❚❚";
+    currentButton.classList.add("playing");
+
+    currentButton.querySelector("span").textContent =
+      "❚❚";
 
   }
+
 
 });
 
 
-// =========================
-// AUDIO PAUSE
-// =========================
+/* =========================================
+   PAUSE EVENT
+   ========================================= */
 
 audio.addEventListener("pause", () => {
 
-  mainPlay.textContent = "▶";
+
+  mainPlay.textContent =
+    "▶";
 
 
   if (currentButton) {
 
-    currentButton.textContent = "▶";
+    currentButton.classList.remove("playing");
+
+    currentButton.querySelector("span").textContent =
+      "▶";
 
   }
+
 
 });
 
 
-// =========================
-// METADATA
-// =========================
+/* =========================================
+   AUDIO METADATA
+   ========================================= */
 
-audio.addEventListener(
-  "loadedmetadata",
-  () => {
-
-    duration.textContent =
-      formatTime(audio.duration);
-
-    progress.value = 0;
-
-  }
-);
+audio.addEventListener("loadedmetadata", () => {
 
 
-// =========================
-// PROGRESO
-// =========================
-
-audio.addEventListener(
-  "timeupdate",
-  () => {
-
-    if (!audio.duration) {
-      return;
-    }
+  duration.textContent =
+    formatTime(audio.duration);
 
 
-    const percentage =
-      (audio.currentTime /
-       audio.duration) * 100;
+  progress.value =
+    0;
 
 
-    progress.value =
-      percentage;
+});
 
 
-    currentTime.textContent =
-      formatTime(audio.currentTime);
+/* =========================================
+   AUDIO PROGRESS
+   ========================================= */
+
+audio.addEventListener("timeupdate", () => {
+
+
+  if (!audio.duration) {
+
+    return;
 
   }
-);
 
 
-// =========================
-// MOVER PROGRESO
-// =========================
-
-progress.addEventListener(
-  "input",
-  () => {
-
-    if (!audio.duration) {
-      return;
-    }
+  const percentage =
+    (audio.currentTime / audio.duration) * 100;
 
 
-    audio.currentTime =
-      (progress.value / 100) *
-      audio.duration;
-
-  }
-);
+  progress.value =
+    percentage;
 
 
-// =========================
-// -5 SEGUNDOS
-// =========================
-
-backward.addEventListener(
-  "click",
-  () => {
-
-    if (!audio.src) {
-      return;
-    }
+  currentTime.textContent =
+    formatTime(audio.currentTime);
 
 
-    audio.currentTime =
-      Math.max(
-        0,
-        audio.currentTime - 5
-      );
+});
+
+
+/* =========================================
+   PROGRESS BAR
+   ========================================= */
+
+progress.addEventListener("input", () => {
+
+
+  if (!audio.duration) {
+
+    return;
 
   }
-);
 
 
-// =========================
-// +5 SEGUNDOS
-// =========================
-
-forward.addEventListener(
-  "click",
-  () => {
-
-    if (!audio.src) {
-      return;
-    }
+  audio.currentTime =
+    (progress.value / 100) * audio.duration;
 
 
-    audio.currentTime =
-      Math.min(
-        audio.duration,
-        audio.currentTime + 5
-      );
+});
+
+
+/* =========================================
+   BACKWARD
+   ========================================= */
+
+backward.addEventListener("click", () => {
+
+
+  if (!audio.src) {
+
+    return;
 
   }
-);
 
 
-// =========================
-// VOLUMEN
-// =========================
+  audio.currentTime =
+    Math.max(
+      0,
+      audio.currentTime - 5
+    );
 
-volume.addEventListener(
-  "input",
-  () => {
 
-    audio.volume =
-      volume.value;
+});
+
+
+/* =========================================
+   FORWARD
+   ========================================= */
+
+forward.addEventListener("click", () => {
+
+
+  if (!audio.src) {
+
+    return;
 
   }
-);
 
 
-// =========================
-// TERMINÓ EL BEAT
-// =========================
+  audio.currentTime =
+    Math.min(
+      audio.duration,
+      audio.currentTime + 5
+    );
 
-audio.addEventListener(
-  "ended",
-  () => {
 
-    mainPlay.textContent =
+});
+
+
+/* =========================================
+   VOLUME
+   ========================================= */
+
+volume.addEventListener("input", () => {
+
+
+  audio.volume =
+    volume.value;
+
+
+});
+
+
+/* =========================================
+   AUDIO ENDED
+   ========================================= */
+
+audio.addEventListener("ended", () => {
+
+
+  mainPlay.textContent =
+    "▶";
+
+
+  if (currentButton) {
+
+    currentButton.classList.remove("playing");
+
+    currentButton.querySelector("span").textContent =
       "▶";
 
+  }
 
-    if (currentButton) {
 
-      currentButton.textContent =
-        "▶";
+  progress.value =
+    0;
+
+
+  currentTime.textContent =
+    "0:00";
+
+
+});
+
+
+/* =========================================
+   SEARCH + FILTERS
+   ========================================= */
+
+const genreFilter =
+  document.getElementById("genre-filter");
+
+const bpmFilter =
+  document.getElementById("bpm-filter");
+
+const searchInput =
+  document.getElementById("track-search");
+
+const trackRows =
+  document.querySelectorAll(".track-row");
+
+const catalogCount =
+  document.getElementById("catalog-count");
+
+
+/* =========================================
+   FILTER FUNCTION
+   ========================================= */
+
+function filterTracks() {
+
+
+  const selectedGenre =
+    genreFilter.value.toLowerCase();
+
+
+  const selectedBpm =
+    bpmFilter.value;
+
+
+  const search =
+    searchInput.value
+      .toLowerCase()
+      .trim();
+
+
+  let visibleTracks = 0;
+
+
+  trackRows.forEach(row => {
+
+
+    const title =
+      row.dataset.title
+        .toLowerCase();
+
+
+    const genre =
+      row.dataset.genre
+        .toLowerCase();
+
+
+    const bpm =
+      Number(row.dataset.bpm);
+
+
+    /* =====================================
+       GENRE
+    ===================================== */
+
+    let genreMatch = true;
+
+
+    if (selectedGenre !== "all") {
+
+      genreMatch =
+        genre.includes(selectedGenre);
 
     }
 
 
-    progress.value = 0;
+    /* =====================================
+       BPM
+    ===================================== */
 
-    currentTime.textContent =
-      "0:00";
+    let bpmMatch = true;
 
-  }
+
+    if (selectedBpm === "120-130") {
+
+      bpmMatch =
+        bpm >= 120 &&
+        bpm <= 130;
+
+    }
+
+
+    if (selectedBpm === "130-140") {
+
+      bpmMatch =
+        bpm > 130 &&
+        bpm <= 140;
+
+    }
+
+
+    if (selectedBpm === "140+") {
+
+      bpmMatch =
+        bpm >= 140;
+
+    }
+
+
+    /* =====================================
+       SEARCH
+    ===================================== */
+
+    const searchMatch =
+      search === "" ||
+      title.includes(search) ||
+      genre.includes(search) ||
+      String(bpm).includes(search);
+
+
+    /* =====================================
+       FINAL RESULT
+    ===================================== */
+
+    const shouldShow =
+      genreMatch &&
+      bpmMatch &&
+      searchMatch;
+
+
+    if (shouldShow) {
+
+      row.classList.remove("hidden");
+
+      visibleTracks++;
+
+    } else {
+
+      row.classList.add("hidden");
+
+    }
+
+
+  });
+
+
+  /* =====================================
+     UPDATE COUNTER
+  ===================================== */
+
+  catalogCount.textContent =
+    `${String(visibleTracks).padStart(2, "0")} TRACKS`;
+
+
+}
+
+
+/* =========================================
+   FILTER EVENTS
+   ========================================= */
+
+genreFilter.addEventListener(
+  "change",
+  filterTracks
 );
 
 
-// ==================================================
-// LICENCIAS
-// ==================================================
+bpmFilter.addEventListener(
+  "change",
+  filterTracks
+);
 
 
-// MODAL
+searchInput.addEventListener(
+  "input",
+  filterTracks
+);
+
+
+/* =========================================
+   LICENSE MODAL
+   ========================================= */
 
 const licenseModal =
-  document.getElementById(
-    "license-modal"
-  );
+  document.getElementById("license-modal");
 
 const closeLicense =
-  document.getElementById(
-    "close-license"
-  );
+  document.getElementById("close-license");
 
 const modalBeat =
-  document.getElementById(
-    "modal-beat"
-  );
+  document.getElementById("modal-beat");
 
 
-// BEAT SELECCIONADO
+/* BEAT SELECCIONADO */
 
-let selectedBeat = "VOID";
+let selectedBeat =
+  "VOID";
 
 let selectedGenre =
   "Dark Trap / Rage";
 
-let selectedBpm = "128";
+let selectedBpm =
+  "128";
 
 
-// =========================
-// BOTONES BUY
-// =========================
+/* =========================================
+   BUY BUTTONS
+   ========================================= */
 
 const buyButtons =
-  document.querySelectorAll(
-    ".buy-button"
-  );
+  document.querySelectorAll(".buy-button");
 
 
 buyButtons.forEach(button => {
 
-  button.addEventListener(
-    "click",
-    () => {
+
+  button.addEventListener("click", () => {
 
 
-      // GUARDAR DATOS
-
-      selectedBeat =
-        button.dataset.beat;
-
-      selectedGenre =
-        button.dataset.genre;
-
-      selectedBpm =
-        button.dataset.bpm;
+    selectedBeat =
+      button.dataset.beat;
 
 
-      // CAMBIAR TEXTO DEL MODAL
-
-      modalBeat.textContent =
-        `${selectedBeat} · ` +
-        `${selectedGenre} · ` +
-        `${selectedBpm} BPM`;
+    selectedGenre =
+      button.dataset.genre;
 
 
-      // ABRIR MODAL
-
-      licenseModal.classList.add(
-        "active"
-      );
+    selectedBpm =
+      button.dataset.bpm;
 
 
-      document.body.style.overflow =
-        "hidden";
+    /* ACTUALIZAR MODAL */
 
-    }
-  );
+    modalBeat.textContent =
+      `${selectedBeat} · ${selectedGenre} · ${selectedBpm} BPM`;
+
+
+    /* ABRIR */
+
+    licenseModal.classList.add("active");
+
+
+    document.body.style.overflow =
+      "hidden";
+
+
+  });
+
 
 });
 
 
-// =========================
-// CERRAR MODAL
-// =========================
+/* =========================================
+   CLOSE MODAL
+   ========================================= */
+
+function closeModal() {
+
+
+  licenseModal.classList.remove("active");
+
+  document.body.style.overflow =
+    "";
+
+}
+
 
 closeLicense.addEventListener(
   "click",
-  () => {
-
-    licenseModal.classList.remove(
-      "active"
-    );
-
-    document.body.style.overflow =
-      "";
-
-  }
+  closeModal
 );
 
 
-// =========================
-// CLIC FUERA
-// =========================
+/* =========================================
+   CLICK OUTSIDE MODAL
+   ========================================= */
 
 licenseModal.addEventListener(
   "click",
-  (event) => {
+  event => {
+
 
     if (
-      event.target ===
-      licenseModal
+      event.target === licenseModal
     ) {
 
-      licenseModal.classList.remove(
-        "active"
-      );
-
-      document.body.style.overflow =
-        "";
+      closeModal();
 
     }
+
 
   }
 );
 
 
-// =========================
-// ESC
-// =========================
+/* =========================================
+   ESC KEY
+   ========================================= */
 
 document.addEventListener(
   "keydown",
-  (event) => {
+  event => {
+
 
     if (event.key === "Escape") {
 
-      licenseModal.classList.remove(
-        "active"
-      );
-
-      document.body.style.overflow =
-        "";
+      closeModal();
 
     }
+
 
   }
 );
 
 
-// ==================================================
-// WHATSAPP
-// ==================================================
+/* =========================================
+   LICENSE → WHATSAPP
+   ========================================= */
 
 const licenseButtons =
   document.querySelectorAll(
@@ -514,62 +726,69 @@ const licenseButtons =
   );
 
 
+/*
+   Número de WhatsApp
+   573233971540 = +57 323 397 1540
+*/
+
 const whatsappNumber =
   "573233971540";
 
 
 licenseButtons.forEach(button => {
 
+
   button.addEventListener(
     "click",
     () => {
 
 
-      const license =
-        button.closest(
-          ".license-card"
-        );
+      const licenseCard =
+        button.closest(".license-card");
 
 
-      const name =
-        license
+      const licenseName =
+        licenseCard
           .querySelector("h3")
           .textContent
           .trim();
 
 
       const price =
-        license
+        licenseCard
           .querySelector("strong")
           .textContent
           .trim();
 
 
       const message =
-        `Hola, quiero comprar ` +
-        `el beat ${selectedBeat}.%0A%0A` +
-
-        `Licencia: ` +
-        `${encodeURIComponent(name)}%0A` +
-
-        `Precio: ` +
-        `${encodeURIComponent(price)}%0A` +
-
-        `Género: ` +
-        `${encodeURIComponent(selectedGenre)}%0A` +
-
-        `BPM: ` +
-        `${encodeURIComponent(selectedBpm)}%0A%0A` +
-
+        `Hola, quiero comprar el beat ${selectedBeat}.\n\n` +
+        `Licencia: ${licenseName}\n` +
+        `Precio: ${price}\n` +
+        `Género: ${selectedGenre}\n` +
+        `BPM: ${selectedBpm}\n\n` +
         `¿Cómo puedo realizar el pago?`;
 
 
+      const whatsappURL =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+
       window.open(
-        `https://wa.me/${whatsappNumber}?text=${message}`,
+        whatsappURL,
         "_blank"
       );
+
 
     }
   );
 
+
 });
+
+
+/* =========================================
+   INITIAL FILTER
+   ========================================= */
+
+filterTracks();
