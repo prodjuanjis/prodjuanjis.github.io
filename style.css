@@ -1,30 +1,19 @@
 /* =========================================
-   JUANJIS
-   ORIGINAL BEAT STORE DESIGN
-   ========================================= */
-
-
-/* =========================================
-   VARIABLES
+   JUANJIS — BEAT STORE
    ========================================= */
 
 :root {
 
   --cream: #f3eee3;
-
   --cream-light: #faf7f0;
-
   --cream-dark: #e7dfd0;
 
   --navy: #101c38;
-
   --navy-light: #263b63;
 
   --muted: #697184;
 
   --line: rgba(16, 28, 56, 0.16);
-
-  --white: #fffdf8;
 
 }
 
@@ -64,7 +53,7 @@ body {
 
   min-height: 100vh;
 
-  padding-bottom: 95px;
+  padding-bottom: 90px;
 
   overflow-x: hidden;
 
@@ -97,7 +86,7 @@ button {
 
 
 /* =========================================
-   DECORATIVE BACKGROUND
+   DECORATIVE ORBIT
    ========================================= */
 
 .orbital-decoration {
@@ -108,13 +97,13 @@ button {
 
   height: 520px;
 
-  right: -260px;
+  right: -270px;
 
-  top: 110px;
+  top: 100px;
 
   pointer-events: none;
 
-  opacity: 0.18;
+  opacity: 0.15;
 
   z-index: -1;
 
@@ -130,8 +119,6 @@ button {
   border: 1px solid var(--navy);
 
   border-radius: 50%;
-
-  transform: rotate(-25deg);
 
 }
 
@@ -179,7 +166,7 @@ button {
 
 .navbar {
 
-  height: 78px;
+  height: 76px;
 
   padding: 0 42px;
 
@@ -191,7 +178,8 @@ button {
 
   border-bottom: 1px solid var(--line);
 
-  background: rgba(250, 247, 240, 0.94);
+  background:
+    rgba(250, 247, 240, 0.94);
 
   backdrop-filter: blur(12px);
 
@@ -204,11 +192,9 @@ button {
 }
 
 
-/* LOGO */
-
 .logo {
 
-  font-size: 28px;
+  font-size: 27px;
 
   font-weight: 950;
 
@@ -224,8 +210,6 @@ button {
 }
 
 
-/* NAVIGATION */
-
 .main-nav {
 
   position: absolute;
@@ -238,7 +222,7 @@ button {
 
   align-items: center;
 
-  gap: 36px;
+  gap: 34px;
 
   height: 100%;
 
@@ -255,7 +239,7 @@ button {
 
   align-items: center;
 
-  font-size: 14px;
+  font-size: 13px;
 
   font-weight: 700;
 
@@ -291,8 +275,6 @@ button {
 }
 
 
-/* RIGHT NAV */
-
 .nav-right {
 
   margin-left: auto;
@@ -301,7 +283,7 @@ button {
 
   align-items: center;
 
-  gap: 24px;
+  gap: 22px;
 
 }
 
@@ -321,9 +303,9 @@ button {
 
 .nav-cart {
 
-  height: 78px;
+  height: 76px;
 
-  padding-left: 24px;
+  padding-left: 22px;
 
   border-left: 1px solid var(--line);
 
@@ -331,16 +313,16 @@ button {
 
   align-items: center;
 
-  gap: 10px;
+  gap: 9px;
 
-  font-size: 13px;
+  font-size: 12px;
 
 }
 
 
 .nav-cart span {
 
-  font-size: 25px;
+  font-size: 22px;
 
 }
 
@@ -355,7 +337,7 @@ button {
 
   margin: 0 auto;
 
-  min-height: 590px;
+  min-height: 550px;
 
   display: flex;
 
@@ -370,7 +352,7 @@ button {
 
 .hero-small {
 
-  font-size: 10px;
+  font-size: 9px;
 
   letter-spacing: 2px;
 
@@ -378,7 +360,7 @@ button {
 
   color: var(--muted);
 
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 
 }
 
@@ -396,7 +378,7 @@ button {
 
 .hero h1 {
 
-  font-size: clamp(60px, 8vw, 110px);
+  font-size: clamp(58px, 7.5vw, 100px);
 
   line-height: 0.88;
 
@@ -404,16 +386,14 @@ button {
 
   font-weight: 900;
 
-  max-width: 800px;
-
 }
 
 
 .hero p {
 
-  margin-top: 32px;
+  margin-top: 28px;
 
-  font-size: 16px;
+  font-size: 15px;
 
   line-height: 1.6;
 
@@ -428,11 +408,11 @@ button {
 
   align-items: center;
 
-  gap: 14px;
+  gap: 13px;
 
-  margin-top: 70px;
+  margin-top: 55px;
 
-  font-size: 10px;
+  font-size: 9px;
 
   letter-spacing: 1.5px;
 
@@ -445,9 +425,7 @@ button {
 
 .scroll-link span {
 
-  font-size: 19px;
-
-  transition: transform 0.2s ease;
+  font-size: 18px;
 
 }
 
@@ -465,9 +443,9 @@ button {
 
 .hero-orbit {
 
-  width: 360px;
+  width: 330px;
 
-  height: 360px;
+  height: 330px;
 
   position: relative;
 
@@ -480,9 +458,9 @@ button {
 
   position: absolute;
 
-  width: 155px;
+  width: 140px;
 
-  height: 155px;
+  height: 140px;
 
   border-radius: 50%;
 
@@ -494,9 +472,9 @@ button {
       #101c38 75%
     );
 
-  top: 102px;
+  top: 95px;
 
-  left: 102px;
+  left: 95px;
 
   box-shadow:
     0 30px 70px
@@ -509,17 +487,17 @@ button {
 
   position: absolute;
 
-  width: 310px;
+  width: 285px;
 
-  height: 125px;
+  height: 115px;
 
   border: 1px solid var(--navy);
 
   border-radius: 50%;
 
-  left: 25px;
+  left: 22px;
 
-  top: 120px;
+  top: 110px;
 
 }
 
@@ -549,33 +527,33 @@ button {
 
 .star-one {
 
-  top: 45px;
+  top: 38px;
 
-  right: 50px;
+  right: 45px;
 
-  font-size: 20px;
+  font-size: 18px;
 
 }
 
 
 .star-two {
 
-  bottom: 70px;
+  bottom: 65px;
 
-  left: 35px;
+  left: 30px;
 
-  font-size: 24px;
+  font-size: 22px;
 
 }
 
 
 .star-three {
 
-  top: 75px;
+  top: 65px;
 
-  left: 65px;
+  left: 55px;
 
-  font-size: 17px;
+  font-size: 16px;
 
 }
 
@@ -590,7 +568,7 @@ button {
 
   margin: 0 auto;
 
-  padding: 85px 0 50px;
+  padding: 75px 0 45px;
 
   border-top: 1px solid var(--line);
 
@@ -605,14 +583,14 @@ button {
 
   justify-content: space-between;
 
-  margin-bottom: 42px;
+  margin-bottom: 35px;
 
 }
 
 
 .section-label {
 
-  font-size: 10px;
+  font-size: 9px;
 
   letter-spacing: 2px;
 
@@ -620,14 +598,14 @@ button {
 
   color: var(--muted);
 
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 
 }
 
 
 .catalog h2 {
 
-  font-size: 52px;
+  font-size: 47px;
 
   letter-spacing: -3px;
 
@@ -640,7 +618,7 @@ button {
 
   color: var(--muted);
 
-  font-size: 13px;
+  font-size: 12px;
 
   line-height: 1.5;
 
@@ -659,9 +637,9 @@ button {
 
   align-items: center;
 
-  gap: 10px;
+  gap: 9px;
 
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 
 }
 
@@ -672,15 +650,17 @@ button {
 
   border: 1px solid var(--navy);
 
-  background: var(--navy);
+  background-color: var(--navy);
 
   color: var(--cream-light);
 
-  min-width: 150px;
+  min-width: 140px;
 
-  padding: 13px 35px 13px 15px;
+  height: 40px;
 
-  font-size: 11px;
+  padding: 0 34px 0 13px;
+
+  font-size: 10px;
 
   font-weight: 800;
 
@@ -718,11 +698,83 @@ button {
 }
 
 
+/* =========================================
+   SEARCH
+   ========================================= */
+
+.search-box {
+
+  height: 40px;
+
+  flex: 1;
+
+  max-width: 330px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 0 13px;
+
+  border: 1px solid var(--line);
+
+  background:
+    rgba(255,255,255,0.45);
+
+}
+
+
+.search-box span {
+
+  font-size: 22px;
+
+  line-height: 1;
+
+}
+
+
+.search-box input {
+
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: var(--navy);
+
+  font-size: 11px;
+
+}
+
+
+.search-box input::placeholder {
+
+  color: var(--muted);
+
+}
+
+
+.search-box:focus-within {
+
+  border-color: var(--navy);
+
+}
+
+
 .catalog-count {
 
   margin-left: auto;
 
-  font-size: 10px;
+  white-space: nowrap;
+
+  font-size: 9px;
 
   letter-spacing: 1.5px;
 
@@ -750,48 +802,58 @@ button {
 
 .track-row {
 
-  min-height: 112px;
+  min-height: 82px;
 
   display: grid;
 
   grid-template-columns:
-    45px
-    82px
-    minmax(190px, 1.5fr)
-    70px
-    80px
-    minmax(145px, 1fr)
-    245px;
+    30px
+    54px
+    minmax(170px, 1.5fr)
+    58px
+    68px
+    minmax(100px, 0.8fr)
+    205px;
 
   align-items: center;
 
-  gap: 18px;
+  gap: 12px;
 
   border-bottom: 1px solid var(--line);
 
   transition:
-    background 0.25s ease,
-    padding 0.25s ease;
+    background 0.2s ease,
+    padding 0.2s ease;
 
 }
 
 
 .track-row:hover {
 
-  background: rgba(255,255,255,0.38);
+  background:
+    rgba(255,255,255,0.38);
 
-  padding-left: 8px;
+  padding-left: 6px;
 
-  padding-right: 8px;
+  padding-right: 6px;
 
 }
 
 
-/* NUMBER */
+.track-row.hidden {
+
+  display: none;
+
+}
+
+
+/* =========================================
+   TRACK NUMBER
+   ========================================= */
 
 .track-index {
 
-  font-size: 11px;
+  font-size: 9px;
 
   font-weight: 900;
 
@@ -806,9 +868,9 @@ button {
 
 .track-art {
 
-  width: 72px;
+  width: 54px;
 
-  height: 72px;
+  height: 54px;
 
   position: relative;
 
@@ -857,7 +919,7 @@ button {
 
   z-index: 2;
 
-  font-size: 27px;
+  font-size: 21px;
 
   font-weight: 900;
 
@@ -870,11 +932,12 @@ button {
 
   position: absolute;
 
-  width: 100px;
+  width: 75px;
 
-  height: 30px;
+  height: 23px;
 
-  border: 1px solid rgba(255,255,255,0.65);
+  border: 1px solid
+    rgba(255,255,255,0.65);
 
   border-radius: 50%;
 
@@ -889,11 +952,11 @@ button {
 
 .track-info h3 {
 
-  font-size: 19px;
+  font-size: 16px;
 
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
 
-  margin-bottom: 7px;
+  margin-bottom: 5px;
 
 }
 
@@ -902,7 +965,7 @@ button {
 
   color: var(--muted);
 
-  font-size: 12px;
+  font-size: 10px;
 
 }
 
@@ -917,7 +980,7 @@ button {
 
   flex-direction: column;
 
-  gap: 5px;
+  gap: 4px;
 
 }
 
@@ -926,9 +989,9 @@ button {
 
   color: var(--muted);
 
-  font-size: 8px;
+  font-size: 7px;
 
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
 
   font-weight: 900;
 
@@ -937,7 +1000,7 @@ button {
 
 .track-meta strong {
 
-  font-size: 14px;
+  font-size: 12px;
 
 }
 
@@ -952,7 +1015,7 @@ button {
 
   flex-wrap: wrap;
 
-  gap: 6px;
+  gap: 5px;
 
 }
 
@@ -963,11 +1026,11 @@ button {
 
   border-radius: 30px;
 
-  padding: 7px 10px;
+  padding: 6px 8px;
 
-  font-size: 8px;
+  font-size: 7px;
 
-  letter-spacing: 1px;
+  letter-spacing: 0.9px;
 
   font-weight: 900;
 
@@ -988,18 +1051,16 @@ button {
 
   justify-content: flex-end;
 
-  gap: 8px;
+  gap: 7px;
 
 }
 
 
-/* PREVIEW */
-
 .preview-button {
 
-  height: 43px;
+  height: 38px;
 
-  padding: 0 14px;
+  padding: 0 12px;
 
   display: flex;
 
@@ -1007,7 +1068,7 @@ button {
 
   justify-content: center;
 
-  gap: 8px;
+  gap: 7px;
 
   border: 1px solid var(--navy);
 
@@ -1015,11 +1076,11 @@ button {
 
   color: var(--navy);
 
-  font-size: 9px;
+  font-size: 8px;
 
   font-weight: 900;
 
-  letter-spacing: 0.8px;
+  letter-spacing: 0.7px;
 
   transition:
     background 0.2s ease,
@@ -1030,7 +1091,7 @@ button {
 
 .preview-button span {
 
-  font-size: 11px;
+  font-size: 10px;
 
 }
 
@@ -1044,13 +1105,11 @@ button {
 }
 
 
-/* BUY */
-
 .buy-button {
 
-  height: 43px;
+  height: 38px;
 
-  min-width: 88px;
+  min-width: 76px;
 
   border: 1px solid var(--navy);
 
@@ -1058,7 +1117,7 @@ button {
 
   color: var(--cream-light);
 
-  font-size: 10px;
+  font-size: 9px;
 
   font-weight: 900;
 
@@ -1090,11 +1149,11 @@ button {
 
   justify-content: space-between;
 
-  padding-top: 18px;
+  padding-top: 15px;
 
-  font-size: 8px;
+  font-size: 7px;
 
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
 
   font-weight: 900;
 
@@ -1111,19 +1170,18 @@ button {
 
   width: min(1180px, 90%);
 
-  margin: 110px auto 0;
+  margin: 100px auto 0;
 
-  padding:
-    100px 0;
+  padding: 90px 0;
 
   border-top: 1px solid var(--line);
 
   display: grid;
 
   grid-template-columns:
-    100px 1fr 250px;
+    80px 1fr 200px;
 
-  gap: 40px;
+  gap: 35px;
 
   align-items: start;
 
@@ -1132,7 +1190,7 @@ button {
 
 .about-number {
 
-  font-size: 11px;
+  font-size: 10px;
 
   letter-spacing: 1px;
 
@@ -1143,24 +1201,24 @@ button {
 
 .about-content h2 {
 
-  font-size: clamp(50px, 7vw, 90px);
+  font-size: clamp(48px, 6.5vw, 82px);
 
   letter-spacing: -5px;
 
   line-height: 0.88;
 
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 
 }
 
 
 .about-text {
 
-  max-width: 480px;
+  max-width: 470px;
 
   color: var(--muted);
 
-  font-size: 15px;
+  font-size: 14px;
 
   line-height: 1.8;
 
@@ -1169,7 +1227,7 @@ button {
 
 .about-symbol {
 
-  font-size: 90px;
+  font-size: 80px;
 
   text-align: right;
 
@@ -1188,8 +1246,7 @@ button {
 
   margin: 0 auto;
 
-  padding:
-    100px 0 150px;
+  padding: 90px 0 130px;
 
   border-top: 1px solid var(--line);
 
@@ -1198,13 +1255,13 @@ button {
 
 .contact-section h2 {
 
-  font-size: clamp(60px, 9vw, 120px);
+  font-size: clamp(58px, 8vw, 105px);
 
   line-height: 0.83;
 
-  letter-spacing: -7px;
+  letter-spacing: -6px;
 
-  margin-bottom: 45px;
+  margin-bottom: 40px;
 
 }
 
@@ -1215,13 +1272,13 @@ button {
 
   align-items: center;
 
-  gap: 15px;
+  gap: 14px;
 
-  padding-bottom: 8px;
+  padding-bottom: 7px;
 
   border-bottom: 2px solid var(--navy);
 
-  font-size: 11px;
+  font-size: 10px;
 
   font-weight: 900;
 
@@ -1232,7 +1289,7 @@ button {
 
 .contact-link span {
 
-  font-size: 18px;
+  font-size: 17px;
 
 }
 
@@ -1258,7 +1315,7 @@ button {
 
   right: 0;
 
-  height: 78px;
+  height: 76px;
 
   background: var(--navy);
 
@@ -1276,9 +1333,9 @@ button {
 
   align-items: center;
 
-  gap: 28px;
+  gap: 25px;
 
-  padding: 0 35px;
+  padding: 0 32px;
 
   box-shadow:
     0 -10px 35px
@@ -1287,22 +1344,20 @@ button {
 }
 
 
-/* PLAYER INFO */
-
 .player-info {
 
   display: flex;
 
   flex-direction: column;
 
-  gap: 5px;
+  gap: 4px;
 
 }
 
 
 .player-info span {
 
-  font-size: 8px;
+  font-size: 7px;
 
   letter-spacing: 1.5px;
 
@@ -1313,12 +1368,10 @@ button {
 
 .player-info strong {
 
-  font-size: 13px;
+  font-size: 12px;
 
 }
 
-
-/* PLAYER CONTROLS */
 
 .player-controls {
 
@@ -1326,7 +1379,7 @@ button {
 
   align-items: center;
 
-  gap: 12px;
+  gap: 10px;
 
 }
 
@@ -1339,16 +1392,16 @@ button {
 
   color: var(--cream-light);
 
-  font-size: 11px;
+  font-size: 10px;
 
 }
 
 
 #main-play {
 
-  width: 38px;
+  width: 36px;
 
-  height: 38px;
+  height: 36px;
 
   border: 1px solid
     rgba(250,247,240,0.7);
@@ -1364,17 +1417,15 @@ button {
 }
 
 
-/* PROGRESS */
-
 .progress-container {
 
   display: flex;
 
   align-items: center;
 
-  gap: 10px;
+  gap: 9px;
 
-  font-size: 9px;
+  font-size: 8px;
 
   opacity: 0.75;
 
@@ -1390,8 +1441,6 @@ button {
 }
 
 
-/* VOLUME */
-
 .volume-container {
 
   display: flex;
@@ -1400,9 +1449,9 @@ button {
 
   justify-content: flex-end;
 
-  gap: 10px;
+  gap: 9px;
 
-  font-size: 8px;
+  font-size: 7px;
 
   letter-spacing: 1px;
 
@@ -1413,7 +1462,7 @@ button {
 
 #volume {
 
-  width: 90px;
+  width: 85px;
 
   accent-color: var(--cream-light);
 
@@ -1467,7 +1516,7 @@ button {
 
   color: var(--navy);
 
-  padding: 48px;
+  padding: 45px;
 
   position: relative;
 
@@ -1492,7 +1541,7 @@ button {
 
   color: var(--navy);
 
-  font-size: 31px;
+  font-size: 30px;
 
   line-height: 1;
 
@@ -1503,24 +1552,24 @@ button {
 
   color: var(--muted);
 
-  font-size: 9px;
+  font-size: 8px;
 
   font-weight: 900;
 
   letter-spacing: 2px;
 
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 
 }
 
 
 .license-box h2 {
 
-  font-size: 39px;
+  font-size: 37px;
 
   letter-spacing: -2px;
 
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 
 }
 
@@ -1529,14 +1578,12 @@ button {
 
   color: var(--muted);
 
-  font-size: 12px;
+  font-size: 11px;
 
-  margin-bottom: 28px;
+  margin-bottom: 25px;
 
 }
 
-
-/* LICENSE OPTIONS */
 
 .license-options {
 
@@ -1558,9 +1605,9 @@ button {
 
   align-items: center;
 
-  gap: 20px;
+  gap: 18px;
 
-  padding: 17px;
+  padding: 16px;
 
   border: 1px solid var(--line);
 
@@ -1582,9 +1629,9 @@ button {
 
 .license-card h3 {
 
-  font-size: 14px;
+  font-size: 13px;
 
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 
 }
 
@@ -1593,14 +1640,14 @@ button {
 
   color: var(--muted);
 
-  font-size: 10px;
+  font-size: 9px;
 
 }
 
 
 .license-card strong {
 
-  font-size: 16px;
+  font-size: 15px;
 
 }
 
@@ -1613,9 +1660,9 @@ button {
 
   color: var(--cream-light);
 
-  padding: 11px 15px;
+  padding: 10px 14px;
 
-  font-size: 9px;
+  font-size: 8px;
 
   font-weight: 900;
 
@@ -1643,13 +1690,13 @@ footer {
 
   border-top: 1px solid var(--line);
 
-  padding: 25px 0 115px;
+  padding: 22px 0 110px;
 
   display: flex;
 
   justify-content: space-between;
 
-  font-size: 10px;
+  font-size: 9px;
 
   font-weight: 900;
 
@@ -1666,7 +1713,7 @@ footer span {
 
 
 /* =========================================
-   RESPONSIVE — TABLET
+   TABLET
    ========================================= */
 
 @media (max-width: 1050px) {
@@ -1675,15 +1722,15 @@ footer span {
   .track-row {
 
     grid-template-columns:
-      35px
-      70px
-      minmax(160px, 1.5fr)
-      60px
-      70px
-      120px
-      220px;
+      28px
+      52px
+      minmax(150px, 1.4fr)
+      55px
+      65px
+      100px
+      190px;
 
-    gap: 12px;
+    gap: 10px;
 
   }
 
@@ -1694,22 +1741,11 @@ footer span {
 
   }
 
-
-  .hero-orbit {
-
-    width: 300px;
-
-    height: 300px;
-
-    transform: scale(0.85);
-
-  }
-
 }
 
 
 /* =========================================
-   RESPONSIVE — MOBILE
+   MOBILE
    ========================================= */
 
 @media (max-width: 760px) {
@@ -1717,12 +1753,10 @@ footer span {
 
   body {
 
-    padding-bottom: 100px;
+    padding-bottom: 95px;
 
   }
 
-
-  /* NAV */
 
   .navbar {
 
@@ -1748,16 +1782,16 @@ footer span {
 
     margin-left: auto;
 
-    margin-right: 16px;
+    margin-right: 15px;
 
-    gap: 15px;
+    gap: 14px;
 
   }
 
 
   .main-nav a {
 
-    font-size: 11px;
+    font-size: 10px;
 
   }
 
@@ -1773,21 +1807,21 @@ footer span {
 
     height: 68px;
 
-    padding-left: 13px;
+    padding-left: 12px;
 
   }
 
 
   .nav-cart span {
 
-    font-size: 19px;
+    font-size: 18px;
 
   }
 
 
   .nav-cart strong {
 
-    font-size: 11px;
+    font-size: 10px;
 
   }
 
@@ -1796,7 +1830,7 @@ footer span {
 
   .hero {
 
-    min-height: 650px;
+    min-height: 620px;
 
     width: 88%;
 
@@ -1812,7 +1846,7 @@ footer span {
 
   .hero h1 {
 
-    font-size: clamp(55px, 16vw, 85px);
+    font-size: clamp(52px, 15vw, 80px);
 
     letter-spacing: -5px;
 
@@ -1827,20 +1861,13 @@ footer span {
 
     height: 260px;
 
-    right: -55px;
+    right: -65px;
 
-    bottom: 80px;
+    bottom: 70px;
 
     opacity: 0.75;
 
     transform: scale(0.7);
-
-  }
-
-
-  .scroll-link {
-
-    margin-top: 55px;
 
   }
 
@@ -1851,7 +1878,7 @@ footer span {
 
     width: 88%;
 
-    padding-top: 65px;
+    padding-top: 60px;
 
   }
 
@@ -1865,7 +1892,7 @@ footer span {
 
   .catalog h2 {
 
-    font-size: 42px;
+    font-size: 40px;
 
   }
 
@@ -1874,10 +1901,12 @@ footer span {
 
     text-align: left;
 
-    margin-top: 15px;
+    margin-top: 14px;
 
   }
 
+
+  /* FILTERS */
 
   .filter-bar {
 
@@ -1895,11 +1924,22 @@ footer span {
   }
 
 
+  .search-box {
+
+    max-width: none;
+
+    width: 100%;
+
+    order: 3;
+
+  }
+
+
   .catalog-count {
 
     width: 100%;
 
-    margin-top: 5px;
+    margin-top: 2px;
 
   }
 
@@ -1909,11 +1949,11 @@ footer span {
   .track-row {
 
     grid-template-columns:
-      30px 58px 1fr;
+      25px 52px 1fr;
 
-    gap: 12px;
+    gap: 10px;
 
-    padding: 20px 0;
+    padding: 18px 0;
 
   }
 
@@ -1929,9 +1969,9 @@ footer span {
 
   .track-art {
 
-    width: 58px;
+    width: 52px;
 
-    height: 58px;
+    height: 52px;
 
   }
 
@@ -1945,7 +1985,14 @@ footer span {
 
   .track-info h3 {
 
-    font-size: 17px;
+    font-size: 15px;
+
+  }
+
+
+  .track-info p {
+
+    font-size: 9px;
 
   }
 
@@ -1991,7 +2038,7 @@ footer span {
 
   .buy-button {
 
-    min-width: 95px;
+    min-width: 90px;
 
   }
 
@@ -2013,18 +2060,18 @@ footer span {
 
     grid-template-columns: 1fr;
 
-    gap: 20px;
+    gap: 18px;
 
-    padding: 70px 0;
+    padding: 65px 0;
 
-    margin-top: 70px;
+    margin-top: 65px;
 
   }
 
 
   .about-content h2 {
 
-    font-size: 55px;
+    font-size: 52px;
 
     letter-spacing: -4px;
 
@@ -2044,14 +2091,14 @@ footer span {
 
     width: 88%;
 
-    padding: 70px 0 110px;
+    padding: 65px 0 105px;
 
   }
 
 
   .contact-section h2 {
 
-    font-size: 65px;
+    font-size: 62px;
 
     letter-spacing: -5px;
 
@@ -2062,7 +2109,7 @@ footer span {
 
   .player {
 
-    height: 75px;
+    height: 74px;
 
     padding:
       0 15px 8px;
@@ -2126,7 +2173,7 @@ footer span {
 
   .license-box h2 {
 
-    font-size: 31px;
+    font-size: 30px;
 
   }
 
@@ -2157,7 +2204,6 @@ footer span {
 
   }
 
-
 }
 
 
@@ -2170,14 +2216,14 @@ footer span {
 
   .main-nav {
 
-    gap: 9px;
+    gap: 8px;
 
   }
 
 
   .main-nav a {
 
-    font-size: 10px;
+    font-size: 9px;
 
   }
 
@@ -2191,14 +2237,14 @@ footer span {
 
   .hero {
 
-    min-height: 600px;
+    min-height: 590px;
 
   }
 
 
   .hero h1 {
 
-    font-size: 53px;
+    font-size: 51px;
 
   }
 
@@ -2207,7 +2253,7 @@ footer span {
 
     right: -95px;
 
-    bottom: 65px;
+    bottom: 60px;
 
   }
 
@@ -2222,39 +2268,30 @@ footer span {
   .track-row {
 
     grid-template-columns:
-      25px 52px 1fr;
+      23px 50px 1fr;
 
   }
 
 
   .track-art {
 
-    width: 52px;
+    width: 50px;
 
-    height: 52px;
+    height: 50px;
 
   }
 
 
   .track-info h3 {
 
-    font-size: 15px;
+    font-size: 14px;
 
   }
 
 
   .track-info p {
 
-    font-size: 10px;
-
-  }
-
-
-  .track-tags span {
-
-    font-size: 7px;
-
-    padding: 6px 8px;
+    font-size: 9px;
 
   }
 
@@ -2268,9 +2305,7 @@ footer span {
 
   .buy-button {
 
-    min-width: 78px;
-
-    font-size: 9px;
+    min-width: 75px;
 
   }
 
